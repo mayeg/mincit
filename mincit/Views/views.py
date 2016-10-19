@@ -18,7 +18,7 @@ class LoginView(View):
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated():
-            return redirect('mincit:inicio')
+            return redirect('mincit:index')
         return render(request, self.template, self.get_contex())
 
     def post(self, request, *args, **kwargs):
@@ -28,7 +28,7 @@ class LoginView(View):
 
         if user is not None:
             login_django(request, user)
-            return redirect('mincit:inicio')
+            return redirect('mincit:index')
         else:
             self.message = 'error, datos incorrectos'
 
@@ -40,7 +40,7 @@ class LoginView(View):
 
 
 class InicioViews(LoginRequiredMixin, View):
-    login_url='mincit:login'
+    login_url = 'mincit:login'
 
     def get(self, request, *args, **kwargs):
         return render(request, 'index.html', {})
