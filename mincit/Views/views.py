@@ -52,5 +52,18 @@ def logout(request):
     return redirect('mincit:login')
 
 
-def diagnostico_emp(request):
-    return render(request, 'diagnostico_emp.html', {})
+class Diagnostico_empViews(LoginRequiredMixin, View):
+    login_url = 'mincit:login'
+
+    def get(self, request,  *args, **kwargs ):
+        return render(request, 'diagnostico_emp.html', {})
+
+
+class InformacionViews(LoginRequiredMixin, View):
+    login_url = 'mincit:login'
+
+
+    def get(self, request, *args, **kwargs):
+        reverse('polls:index',
+                current_app=self.request.resolver_match.namespace)
+        return render(request, 'informacion.html', {})
