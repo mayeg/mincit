@@ -1,2 +1,2 @@
 web: gunicorn gettingstarted.wsgi --log-file -
-web: gunicorn mincit:app
+web: gunicorn admin_mincit:app
