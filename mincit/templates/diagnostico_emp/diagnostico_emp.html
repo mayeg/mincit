@@ -1,0 +1,28 @@
+{% extends "plantillas/inicio.html" %}
+{% block title %} DIAGNOSTICO_EMP {% endblock %}
+{% block contenido%}
+
+<ul class="nav nav-tabs nav-justified">
+    <li>
+        <a href="{% url 'mincit:informacion' %}">Información</a>
+    </li>
+    <li><a href="">Situación</a></li>
+    <li><a href="#">Planeacion</a></li>
+    <li><a href="#">Organizacion</a></li>
+    <li><a href="#">Direccion</a></li>
+    <li><a href="#">Control</a></li>
+    <li><a href="#">Recursos</a></li>
+    <li><a href="#">Mercadeo</a></li>
+    <li><a href="#">Financiera</a></li>
+    <li><a href="#">Produccion</a></li>
+    <li><a href="#">Internacionalizacion</a></li>
+    <li><a href="#">Aspectos</a></li>
+    <li><a href="#">Resumen</a></li>
+</ul>
+<div class="text-center">
+    <h2>
+        DIAGNÓSTICO DE LA EMPRESA
+        Programa de Fortalecimiento Empresarial
+    </h2>
+</div>
+{% endblock %}
