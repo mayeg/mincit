@@ -3,117 +3,128 @@
 <html lang="en">
 <head>
     <title>MinCit|Index</title>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Elastic Image Slideshow with Thumbnail Preview" />
-        <meta name="keywords" content="jquery, css3, responsive, image, slider, slideshow, thumbnails, preview, elastic" />
-        <meta name="author" content="Codrops" />
-        <link rel="shortcut icon" href="../favicon.ico">
-        <link href="{% static 'css/bootstrap.min.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <link href="{% static 'css/AdminLTE.min.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <link rel="stylesheet" type="text/css" href="{% static 'slider/css/demo.css'%}" />
-        <link rel="stylesheet" type="text/css" href="{% static 'slider/css/style.css' %}" />
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display:400italic' rel='stylesheet' type='text/css' />
-		<noscript>
-			<link rel="stylesheet" type="text/css" href="{% static 'slider/css/noscript.css' %}" />
-		</noscript>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+          content="Elastic Image Slideshow with Thumbnail Preview"/>
+    <meta name="keywords"
+          content="jquery, css3, responsive, image, slider, slideshow, thumbnails, preview, elastic"/>
+    <meta name="author" content="Codrops"/>
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link href="{% static 'css/bootstrap.min.css' %}" type="text/css"
+          rel="stylesheet" media="screen,projection"/>
+    <link href="{% static 'css/AdminLTE.min.css' %}" type="text/css"
+          rel="stylesheet" media="screen,projection"/>
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'slider/css/demo.css'%}"/>
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'slider/css/style.css' %}"/>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display:400italic'
+          rel='stylesheet' type='text/css'/>
+    <noscript>
+        <link rel="stylesheet" type="text/css"
+              href="{% static 'slider/css/noscript.css' %}"/>
+    </noscript>
 
 </head>
 <body>
 <div class="container">
-            <div class="header">
+    <div class="header">
 
-                <div class="clr"></div>
-            </div>
-            <div>
-
-                <img src="{% static 'img/logo.jpg' %}" class="imagen-responsive" alt="">
-            </div>
-
-            <div class="wrapper">
-                <div id="ei-slider" class="ei-slider">
-                    <ul class="ei-slider-large">
-						<li>
-                            <a href="http://www.mincit.gov.co/publicaciones.php?id=37099">
-                            <img src="{% static 'img/publicacion1.jpg' %}" alt="image06"/>
-                            <div class="ei-title">
-                                <h2>Colombia etc</h2>
-                                <h3>aqui va la info</h3>
-                            </div>
-                            </a>
-                        </li>
-                        <li>
-                            <img src="slider/images/large/1.jpg" alt="image01" />
-                            <div class="ei-title">
-                                <h2>Creative</h2>
-                                <h3>Duet</h3>
-                            </div>
-                        </li>
-                        <li>
-                            <img src="slider/images/large/2.jpg" alt="image02" />
-                            <div class="ei-title">
-                                <h2>Friendly</h2>
-                                <h3>Devil</h3>
-                            </div>
-                        </li>
-                        <li>
-                            <img src="slider/images/large/3.jpg" alt="image03"/>
-                            <div class="ei-title">
-                                <h2>Tranquilent</h2>
-                                <h3>Compatriot</h3>
-                            </div>
-                        </li>
-
-                    </ul><!-- ei-slider-large -->
-                    <ul class="ei-slider-thumbs">
-                        <li class="ei-slider-element">Current</li>
-						<li><a href="#">Slide 6</a><img src="{% static 'img/publicacion1.jpg' %}" alt="thumb06" /></li>
-                        <li><a href="#">Slide 1</a><img src="slider/images/thumbs/1.jpg" alt="thumb01" /></li>
-                        <li><a href="#">Slide 2</a><img src="slider/images/thumbs/2.jpg" alt="thumb02" /></li>
-                        <li><a href="#">Slide 3</a><img src="slider/images/thumbs/3.jpg" alt="thumb03" /></li>
-                    </ul><!-- ei-slider-thumbs -->
-                </div><!-- ei-slider -->
-                <p>
-                     <h1>
-
-            </h1>
-                </p>
-
-            </div><!-- wrapper -->
-
-           <div class="row tex-center">
-                <div class="col-md-4 text-center">
-                    <a href="{% url 'mincit:login' %}">
-                        <button type="submit"
-                            class="btn btn-success btn-block btn-flat">
-                        Log In
-                    </button>
-                    </a>
-
-                </div><!-- /.col -->
-            </div>
-
-            <!----foorter------>
-             <div class="row">
-  <hr>
-    <div class="col-lg-12">
-      <div class="col-md-8">
-        <a href="#">Desarrollado por:</a> | <a href="">Mayerly Garcia </a>
-      </div>
-      <div class="col-md-4">
-        <p class="muted pull-right">© 2016 Compañia. Todos los derechos reservados</p>
-      </div>
+        <div class="clr"></div>
     </div>
-  </div>
-        </div>
+    <div>
 
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
-        <script type="text/javascript" src="{% static 'slider/js/jquery.eislideshow.js' %}"></script>
-        <script type="text/javascript" src="{% static 'slider/js/jquery.easing.1.3.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
-        <script src="{% static 'plugins/iCheck/icheck.min.js' %}"></script>
-        <script type="text/javascript">
+        <img src="{% static 'img/logo.jpg' %}" class="imagen-responsive" alt="">
+    </div>
+
+    <div class="wrapper">
+        <div id="ei-slider" class="ei-slider">
+            <ul class="ei-slider-large">
+                <li>
+                    <a href="http://www.mincit.gov.co/publicaciones.php?id=37099">
+                        <img src="{% static 'img/publicacion1.jpg' %}"
+                             alt="image06"/>
+                        <div class="ei-title">
+                            <h2>Colombia etc</h2>
+                            <h3>aqui va la info</h3>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <img src="slider/images/large/1.jpg" alt="image01"/>
+                    <div class="ei-title">
+                        <h2>Creative</h2>
+                        <h3>Duet</h3>
+                    </div>
+                </li>
+                <li>
+                    <img src="slider/images/large/2.jpg" alt="image02"/>
+                    <div class="ei-title">
+                        <h2>Friendly</h2>
+                        <h3>Devil</h3>
+                    </div>
+                </li>
+                <li>
+                    <img src="slider/images/large/3.jpg" alt="image03"/>
+                    <div class="ei-title">
+                        <h2>Tranquilent</h2>
+                        <h3>Compatriot</h3>
+                    </div>
+                </li>
+
+            </ul><!-- ei-slider-large -->
+            <ul class="ei-slider-thumbs">
+                <li class="ei-slider-element">Current</li>
+                <li><a href="#">Slide 6</a><img
+                        src="{% static 'img/publicacion1.jpg' %}"
+                        alt="thumb06"/></li>
+                <li><a href="#">Slide 1</a><img src="slider/images/thumbs/1.jpg"
+                                                alt="thumb01"/></li>
+                <li><a href="#">Slide 2</a><img src="slider/images/thumbs/2.jpg"
+                                                alt="thumb02"/></li>
+                <li><a href="#">Slide 3</a><img src="slider/images/thumbs/3.jpg"
+                                                alt="thumb03"/></li>
+            </ul><!-- ei-slider-thumbs -->
+        </div><!-- ei-slider -->
+        <br />
+    </div><!-- wrapper -->
+
+    <div class="row">
+        <div class="col-md-4 col-xs-12 col-md-offset-4 text-center">
+            <a href="{% url 'mincit:login' %}" class="btn btn-success btn-block btn-flat">
+                Log In
+            </a>
+        </div><!-- /.col -->
+    </div>
+
+    <!----foorter------>
+    <div class="row">
+        <hr>
+        <div class="col-lg-12">
+            <div class="col-md-8">
+                <a href="#">Desarrollado por:</a> | <a href="">Mayerly
+                Garcia </a>
+            </div>
+            <div class="col-md-4">
+                <p class="muted pull-right">© 2016 Compañia. Todos los derechos
+                    reservados</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript"
+        src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript"
+        src="{% static 'slider/js/jquery.eislideshow.js' %}"></script>
+<script type="text/javascript"
+        src="{% static 'slider/js/jquery.easing.1.3.js' %}"></script>
+<script type="text/javascript"
+        src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/iCheck/icheck.min.js' %}"></script>
+<script type="text/javascript">
             $(function() {
                 $('#ei-slider').eislideshow({
 					animation			: 'center',
@@ -122,6 +133,7 @@
 					titlesFactor		: 0
                 });
             });
-        </script>
+
+</script>
 </body>
 </html>
