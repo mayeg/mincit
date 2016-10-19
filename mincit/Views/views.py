@@ -43,7 +43,7 @@ class InicioViews(LoginRequiredMixin, View):
     login_url='mincit:login'
 
     def get(self, request, *args, **kwargs):
-        return render(request, 'inicio.html', {})
+        return render(request, 'index.html', {})
 
 
 @login_required(login_url='mincit:login')
