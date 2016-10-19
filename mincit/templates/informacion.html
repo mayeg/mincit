@@ -1,4 +1,7 @@
-Asesor|Info
+{% extends "plantilla/inicio.html" %}
+{% block title %} diagnostico_emp|Info {% endblock %}
+{% block contenido %}
+
 <ul class="nav nav-tabs nav-justified">
     <li class="active"><a href="">Informacion</a></li>
     <li><a href="#">Situacion</a></li>
@@ -78,8 +81,7 @@ Asesor|Info
         </div>
     </div>
     <div class="form-group form-group-s">
-        <label class="col-sm-2 control-label" for="numero">Numero
-            telefono: </label>
+        <label class="col-sm-2 control-label" for="numero">Numero telefono: </label>
         <div class="col-sm-4">
             <input class="form-control" type="text" id="numero"
                    placeholder="Numero">
@@ -92,11 +94,9 @@ Asesor|Info
         </div>
     </div>
     <div class="form-group form-group-s">
-        <label class="col-sm-2 control-label" for="tiempo_o">Tiempo de
-            operacion: </label>
+        <label class="col-sm-2 control-label" for="tiempo_o">Tiempo de operacion: </label>
         <div class="col-sm-4">
-            <input class="form-control" type="text" id="tiempo_o" placeholder="Tiempo
-      de operacion">
+            <input class="form-control" type="text" id="tiempo_o" placeholder="Tiempo de operacion">
         </div>
     </div>
     <div class="form-group form-group-s">
@@ -116,3 +116,4 @@ Asesor|Info
         </div><!-- /.col -->
     </div>
 </form>
+{% endblock %}

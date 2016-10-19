@@ -1,10 +1,10 @@
-{% extends "inicio.html" %}
+{% extends "plantilla/inicio.html" %}
 {% block title %} DIAGNOSTICO_EMP {% endblock %}
 {% block contenido %}
 
 <ul class="nav nav-tabs nav-justified">
     <li>
-        <a href="">Informacion</a>
+        <a href="{% url 'mincit:informacion' %}">Informacion</a>
     </li>
     <li><a href="">Situacion</a></li>
     <li><a href="#">Planeacion</a></li>

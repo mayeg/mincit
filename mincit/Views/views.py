@@ -64,6 +64,4 @@ class InformacionViews(LoginRequiredMixin, View):
 
 
     def get(self, request, *args, **kwargs):
-        reverse('polls:index',
-                current_app=self.request.resolver_match.namespace)
         return render(request, 'informacion.html', {})
