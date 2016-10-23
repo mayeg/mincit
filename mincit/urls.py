@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from mincit.Views import views
+from mincit import views
 
 app_name = 'mincit'
 
@@ -10,7 +10,5 @@ urlpatterns = [
     url(r'^logout/$', views.logout, name='logout'),
     url(r'^diagnostico_emp/$', views.Diagnostico_empViews.as_view(),
         name='diagnostico_emp'),
-    url(r'^/informacion$', views.InformacionViews.as_view(), name='informacion'),
-
-
+    url(r'^informacion$', views.InformacionViews.as_view(), name='informacion'),
 ]
