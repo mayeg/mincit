@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d9612b80-8c93-4986-a36d-2bb00e7d5cf6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mincit/templates/diagnostico_emp/planeacion.html" afterPath="$PROJECT_DIR$/mincit/templates/diagnostico_emp/planeacion.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mincit/templates/diagnostico_emp/situacion.html" afterPath="$PROJECT_DIR$/mincit/templates/diagnostico_emp/situacion.html" />
     </list>
     <ignored path="admin_mincit.iws" />
@@ -36,21 +37,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="situacion.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="situacion.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mincit/templates/diagnostico_emp/situacion.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="38" column="14" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
+            <state relative-caret-position="156">
+              <caret line="39" column="20" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="planeacion.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="planeacion.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mincit/templates/diagnostico_emp/planeacion.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1909">
-              <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+            <state relative-caret-position="119">
+              <caret line="26" column="20" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -76,16 +77,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="0005_empresa.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mincit/migrations/0005_empresa.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="0004_auto_20161023_1658.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mincit/migrations/0004_auto_20161023_1658.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -101,6 +92,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="informacion.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mincit/templates/diagnostico_emp/informacion.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="27" column="4" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -185,11 +186,11 @@
         <option value="$PROJECT_DIR$/mincit/templates/login.html" />
         <option value="$PROJECT_DIR$/mincit/templates/diagnostico_emp/informacion.html" />
         <option value="$PROJECT_DIR$/mincit/templates/index.html" />
-        <option value="$PROJECT_DIR$/mincit/templates/diagnostico_emp/planeacion.html" />
         <option value="$PROJECT_DIR$/mincit/urls.py" />
         <option value="$PROJECT_DIR$/mincit/forms.py" />
         <option value="$PROJECT_DIR$/mincit/views.py" />
         <option value="$PROJECT_DIR$/mincit/templates/diagnostico_emp/situacion.html" />
+        <option value="$PROJECT_DIR$/mincit/templates/diagnostico_emp/planeacion.html" />
       </list>
     </option>
   </component>
@@ -783,14 +784,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mincit/templates/diagnostico_emp/informacion.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1674">
-          <caret line="93" column="37" selection-start-line="93" selection-start-column="37" selection-end-line="93" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mincit/migrations/0005_empresa.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -872,18 +865,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mincit/templates/diagnostico_emp/planeacion.html">
+    <entry file="file://$PROJECT_DIR$/mincit/templates/diagnostico_emp/informacion.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1909">
-          <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+        <state relative-caret-position="120">
+          <caret line="27" column="4" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mincit/templates/diagnostico_emp/situacion.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="38" column="14" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
+        <state relative-caret-position="156">
+          <caret line="39" column="20" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mincit/templates/diagnostico_emp/planeacion.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="26" column="20" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
           <folding />
         </state>
       </provider>
