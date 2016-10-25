@@ -2,7 +2,7 @@ from django.contrib import admin
 from models import Diagnostico_Emp, Recurso
 from models import Informacion, Direccion
 from models import Situacion, Control
-from models import Planeacion, Organizacion
+from models import Planeacion, Organizacion, Empresa
 
 # Register your models here.
 admin.site.register(Diagnostico_Emp)
@@ -13,7 +13,7 @@ admin.site.register(Organizacion)
 admin.site.register(Recurso)
 admin.site.register(Direccion)
 admin.site.register(Control)
-
+admin.site.register(Empresa)
 
 
 

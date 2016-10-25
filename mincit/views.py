@@ -2,17 +2,17 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as login_django
 from django.contrib.auth import logout as logout_django
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
-from django.http.response import HttpResponseRedirect
-from django.shortcuts import render, redirect
-from django.template.context_processors import request
-from django.core.urlresolvers import reverse_lazy
-
-from mincit.forms.forms import LoginForm, InformacionForm
-from django.views.generic import View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.urlresolvers import reverse_lazy
+from django.shortcuts import render, redirect
+from django.views.generic import View
+from django.views.generic.list import ListView
+from mincit.forms import LoginForm, InformacionForm, SituacionForm
+from models import Empresa
+
 
 # Create your views here.
+
 
 class LoginView(View):
     form = LoginForm()
@@ -42,11 +42,18 @@ class LoginView(View):
         return {'form': self.form, 'message': self.message}
 
 
-class InicioViews(LoginRequiredMixin, View):
+class InicioListViews(LoginRequiredMixin, ListView):
     login_url = 'mincit:login'
+    model = Empresa
+    template_name = 'index.html'
+    paginate_by = 10
 
-    def get(self, request, *args, **kwargs):
-        return render(request, 'index.html', {})
+    def get_context_data(self, **kwargs):
+        context = super(InicioListViews, self).get_context_data(
+            **kwargs)
+        return context
+
+
 
 
 @login_required(login_url='mincit:login')
@@ -58,15 +65,16 @@ def logout(request):
 class Diagnostico_empViews(LoginRequiredMixin, View):
     login_url = 'mincit:login'
 
-    def get(self, request,  *args, **kwargs ):
-        return render(request, 'diagnostico_emp.html', {})
+    def get(self, request, *args, **kwargs):
+        return render(request, 'diagnostico_emp/diagnostico_emp.html', {})
 
 
 class InformacionViews(LoginRequiredMixin, View):
+    form = InformacionForm
     login_url = 'mincit:login'
-    success_url = reverse_lazy('client:situacion')
-    template = 'informacion.html'
-    form = InformacionForm(request.POST or None)
+    success_url = reverse_lazy('situacion')
+    template = 'diagnostico_emp/informacion.html'
+    messages = None
     context = {
         'form': form
     }
@@ -74,7 +82,50 @@ class InformacionViews(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         return render(request, self.template, self.context)
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs ):
+        self.form = InformacionForm(request.POST)
         if self.form.is_valid():
             self.form.save()
-        return HttpResponseRedirect(self.get_success_url())
+            return render(request, 'diagnostico_emp/situacion.html',
+                          self.context)
+        else:
+            print
+        return render(request, self.template, self.context)
+
+
+class SituacionViews(LoginRequiredMixin, View):
+    form = SituacionForm
+    login_url = 'mincit:login'
+    success_url = reverse_lazy('planeacion')
+    template = 'diagnostico_emp/situacion.html'
+    context = {
+        'form': form
+    }
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template, self.context)
+
+    def post(self, request, *args, **kwargs ):
+        try:
+            self.form = InformacionForm(request.POST)
+            if self.form.is_valid():
+                self.form.save()
+            return render(request, 'diagnostico_emp/situacion.html', self.context)
+        except Exception as e:
+            print e.message
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

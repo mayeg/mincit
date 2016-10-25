@@ -17,14 +17,6 @@
     <li><a href="#">Aspectos</a></li>
     <li><a href="#">Resumen</a></li>
 </ul>
-
-<form class="navbar-form navbar-rigth" role="search">
-    {% csrf_token %}
-    <div class="form-group">
-        <input type="text" class="form-control" placeholder="id empresa">
-    </div>
-    <button type="submit" class="btn btn-success btn-default">Buscar</button>
-</form>
 <div class="row">
     <h1 class="text-center">
         <p>
@@ -35,26 +27,23 @@
 <form class="form-horizontal col-xs-12" action="" method="post">
     {% csrf_token %}
     <div class="form-group form-group-s">
-        <label class="col-sm-2 control-label" for="nombre">Nombre comercial
+        <label class="col-sm-2 control-label">Nombre comercial
             de la empresa</label>
         <div class="col-sm-4">
-            <input class="form-control" type="text" id="nombre"
-                   placeholder="Nombre">
+            {{form.nombre_empresa}}
         </div>
     </div>
     <div class="form-group form-group-s">
-        <label class="col-sm-2 control-label" for="razon">Razón social: </label>
+        <label class="col-sm-2 control-label">Razón social: </label>
         <div class="col-sm-4">
-            <input class="form-control" type="text" id="razon"
-                   placeholder="Razon Social">
+            {{form.razon_social}}
         </div>
     </div>
     <div class="form-group form-group-s">
-        <label class="col-sm-2 control-label" for="nombre_c">Nombre de
+        <label class="col-sm-2 control-label">Nombre de
             contacto: </label>
         <div class="col-sm-4">
-            <input class="form-control" type="text" id="nombre_c" placeholder="Nombre
-      Contacto">
+            {{form.nombre_contacto}}
         </div>
     </div>
     <div class="form-group form-group-s">
@@ -81,30 +70,28 @@
         </div>
     </div>
     <div class="form-group form-group-s">
-        <label class="col-sm-2 control-label" for="numero">Numero telefono: </label>
+        <label class="col-sm-2 control-label">Numero telefono: </label>
         <div class="col-sm-4">
-            <input class="form-control" type="text" id="numero"
-                   placeholder="Numero">
+            {{form.numero_tel}}
         </div>
-        <label class="col-sm-2 control-label" for="numero_m"> Telefono
+        <label class="col-sm-2 control-label"> Telefono
             Movil: </label>
         <div class="col-sm-4">
-            <input class="form-control" type="text" id="numero_m"
-                   placeholder="Numero">
+            {{form.telfono_movil}}
         </div>
     </div>
     <div class="form-group form-group-s">
-        <label class="col-sm-2 control-label" for="tiempo_o">Tiempo de operacion: </label>
+        <label class="col-sm-2 control-label">Tiempo de operacion: </label>
         <div class="col-sm-4">
-            <input class="form-control" type="text" id="tiempo_o" placeholder="Tiempo de operacion">
+            {{form.tiempo_operacion}}
         </div>
     </div>
     <div class="form-group form-group-s">
-        <label class="col-sm-2 control-label" for="tiempo_o">Cuales son los
+        <label class="col-sm-2 control-label">Cuales son los
             productos
             y/o servicios: </label>
         <div class="col-sm-4">
-            <textarea class="form-control" rows="3"></textarea>
+            {{form.productos_servicio}}
         </div>
     </div>
     <div class="row">

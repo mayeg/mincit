@@ -2,6 +2,11 @@ from __future__ import unicode_literals
 from django.db import models
 
 
+class Empresa(models.Model):
+    nombre = models.CharField(max_length=250, unique=True)
+    nit = models.CharField(max_length=50, unique=True)
+
+
 class Informacion(models.Model):
     nombre_empresa = models.CharField(max_length=250)
     razon_social = models.CharField(max_length=250)
@@ -72,21 +77,14 @@ class Recurso(models.Model):
 class Diagnostico_Emp(models.Model):
     fecha = models.DateField()
     numero_consecutivo = models.IntegerField()
-    id_informacion = models.OneToOneField(Informacion, null=False, blank=False, on_delete=models.CASCADE)
-    id_situacion = models.OneToOneField(Situacion, null=False, blank=False,
-                                        on_delete=models.CASCADE)
-    id_planeacion = models.OneToOneField(Planeacion, null=False, blank=False,
-                                         on_delete=models.CASCADE)
-    id_organizacion = models.OneToOneField(Organizacion, null=False, blank=False,
-                                           on_delete=models.CASCADE)
-    id_direccion = models.OneToOneField(Direccion, null=False, blank=False,
-                                        on_delete=models.CASCADE)
-    id_control = models.OneToOneField(Control, null=False, blank=False,
-                                      on_delete=models.CASCADE)
-    id_recursos = models.OneToOneField(Recurso, null=False, blank=False,
-                                       on_delete=models.CASCADE)
+    id_informacion = models.OneToOneField(Informacion, on_delete=models.CASCADE)
+    id_situacion = models.OneToOneField(Situacion, on_delete=models.CASCADE)
+    id_planeacion = models.OneToOneField(Planeacion, on_delete=models.CASCADE)
+    id_organizacion = models.OneToOneField(Organizacion, on_delete=models.CASCADE)
+    id_direccion = models.OneToOneField(Direccion, on_delete=models.CASCADE)
+    id_control = models.OneToOneField(Control, on_delete=models.CASCADE)
+    id_recursos = models.OneToOneField(Recurso, on_delete=models.CASCADE)
     id_mercadeo = models.IntegerField()
-
     id_financiera = models.IntegerField()
     id_produccion = models.IntegerField()
     id_internacionalizacion = models.IntegerField()
