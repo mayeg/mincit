@@ -89,7 +89,7 @@ class InformacionViews(LoginRequiredMixin, View):
             return render(request, 'diagnostico_emp/situacion.html',
                           self.context)
 
-        return render(request, self.template, self.context)
+        return render(request, 'diagnostico_emp/situacion.html', self.context)
 
 
 class SituacionViews(LoginRequiredMixin, View):
