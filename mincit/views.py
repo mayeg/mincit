@@ -108,7 +108,7 @@ class SituacionViews(LoginRequiredMixin, View):
         self.form = SituacionForm(request.POST)
         if self.form.is_valid():
             self.form.save()
-            return render(request, 'diagnostico_emp/situacion.html', self.context)
+            return render(request, 'diagnostico_emp/planeacion.html', self.context)
 
         return render(request, 'diagnostico_emp/planeacion.html', self.context)
 
