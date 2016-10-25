@@ -1,7 +1,7 @@
 
 
 from django import forms
-from mincit.models import Informacion, Situacion
+from mincit.models import Informacion, Situacion, Planeacion
 
 
 class LoginForm(forms.Form):
@@ -70,6 +70,19 @@ class SituacionForm(forms.ModelForm):
                     }
 
 
+class PlaneacionForm(forms.ModelForm):
+    class Meta:
+        model = Planeacion
+        fields = [
+            'elabora_planes',
+            'tiempo_planeacion',
+            'participacion_empleados',
+            'conocen_objetivos',
+            'estartegias_plan_accion',
+        ]
+
+        widgets = {
+                    }
 
 
 

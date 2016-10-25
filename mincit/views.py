@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.views.generic.list import ListView
-from mincit.forms import LoginForm, InformacionForm, SituacionForm
+from mincit.forms import LoginForm, InformacionForm, SituacionForm, PlaneacionForm
 from models import Empresa
 
 
@@ -112,7 +112,7 @@ class SituacionViews(LoginRequiredMixin, View):
 
 
 class PlaneacionViews(LoginRequiredMixin, View):
-    form = SituacionForm
+    form = PlaneacionForm
     login_url = 'mincit:login'
     success_url = reverse_lazy('organizacion')
     template = 'diagnostico_emp/planeacion.html'
@@ -124,7 +124,7 @@ class PlaneacionViews(LoginRequiredMixin, View):
         return render(request, self.template, self.context)
 
     def post(self, request, *args, **kwargs ):
-        self.form = SituacionForm(request.POST)
+        self.form = (PlaneacionForm(request.POST))
         if self.form.is_valid():
             self.form.save()
             return render(request, 'diagnostico_emp/planeacion.html', self.context)
