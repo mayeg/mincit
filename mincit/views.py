@@ -88,8 +88,7 @@ class InformacionViews(LoginRequiredMixin, View):
             self.form.save()
             return render(request, 'diagnostico_emp/situacion.html',
                           self.context)
-        else:
-            print
+
         return render(request, self.template, self.context)
 
 
@@ -106,14 +105,29 @@ class SituacionViews(LoginRequiredMixin, View):
         return render(request, self.template, self.context)
 
     def post(self, request, *args, **kwargs ):
-        try:
-            self.form = InformacionForm(request.POST)
-            if self.form.is_valid():
-                self.form.save()
+        self.form = SituacionForm(request.POST)
+        if self.form.is_valid():
+            self.form.save()
             return render(request, 'diagnostico_emp/situacion.html', self.context)
-        except Exception as e:
-            print e.message
 
+
+class PlaneacionViews(LoginRequiredMixin, View):
+    form = SituacionForm
+    login_url = 'mincit:login'
+    success_url = reverse_lazy('organizacion')
+    template = 'diagnostico_emp/planeacion.html'
+    context = {
+        'form': form
+    }
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template, self.context)
+
+    def post(self, request, *args, **kwargs ):
+        self.form = SituacionForm(request.POST)
+        if self.form.is_valid():
+            self.form.save()
+            return render(request, 'diagnostico_emp/planeacion.html', self.context)
 
 
 
