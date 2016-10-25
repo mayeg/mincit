@@ -110,6 +110,8 @@ class SituacionViews(LoginRequiredMixin, View):
             self.form.save()
             return render(request, 'diagnostico_emp/situacion.html', self.context)
 
+        return render(request, 'diagnostico_emp/planeacion.html', self.context)
+
 
 class PlaneacionViews(LoginRequiredMixin, View):
     form = PlaneacionForm
@@ -124,10 +126,12 @@ class PlaneacionViews(LoginRequiredMixin, View):
         return render(request, self.template, self.context)
 
     def post(self, request, *args, **kwargs ):
-        self.form = (PlaneacionForm(request.POST))
+        self.form = PlaneacionForm(request.POST)
         if self.form.is_valid():
             self.form.save()
             return render(request, 'diagnostico_emp/planeacion.html', self.context)
+
+        return render(request, 'diagnostico_emp/organizacion.html', self.context)
 
 
 
