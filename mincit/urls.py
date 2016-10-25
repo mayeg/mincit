@@ -14,7 +14,7 @@ urlpatterns = [
         name='informacion'),
     url(r'^diagnostico_emp/situacion$', views.SituacionViews.as_view(),
         name='situacion'),
-    url(r'^diagnostico_emp/planeacio$', views.PlaneacionViews.as_view(),
+    url(r'^diagnostico_emp/planeacion$', views.PlaneacionViews.as_view(),
         name='planeacion'),
 
 
