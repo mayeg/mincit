@@ -8,10 +8,16 @@ class Empresa(models.Model):
 
 
 class Informacion(models.Model):
+    POSICION_EMPRESA_CHOICE = (
+        ('representante_legal', 'Representante Legal'),
+        ('socio', 'Socio'),
+        ('otro', 'Otro'),
+    )
     nombre_empresa = models.CharField(max_length=250)
     razon_social = models.CharField(max_length=250)
     nombre_contacto = models.CharField(max_length=50)
-    posicion_empresa = models.CharField(max_length=50)
+    posicion_empresa = models.CharField(max_length=50, choices=POSICION_EMPRESA_CHOICE,
+                                        default='No seleccion')
     numero_tel = models.IntegerField()
     telfono_movil = models.IntegerField()
     tiempo_operacion = models.IntegerField()
@@ -77,6 +83,8 @@ class Recurso(models.Model):
 class Diagnostico_Emp(models.Model):
     fecha = models.DateField()
     numero_consecutivo = models.IntegerField()
+    asesor = models.CharField(max_length=100, default="")
+    id_empresa = models.ForeignKey(Empresa, default="", on_delete=models.CASCADE)
     id_informacion = models.OneToOneField(Informacion, on_delete=models.CASCADE)
     id_situacion = models.OneToOneField(Situacion, on_delete=models.CASCADE)
     id_planeacion = models.OneToOneField(Planeacion, on_delete=models.CASCADE)

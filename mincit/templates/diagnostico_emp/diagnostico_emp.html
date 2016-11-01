@@ -2,27 +2,72 @@
 {% block title %} DIAGNOSTICO_EMP {% endblock %}
 {% block contenido %}
 
-<ul class="nav nav-tabs nav-justified">
-    <li>
-        <a href="{% url 'mincit:informacion' %}">Informacion</a>
-    </li>
-    <li><a href="">Situacion</a></li>
-    <li><a href="#">Planeacion</a></li>
-    <li><a href="#">Organizacion</a></li>
-    <li><a href="#">Direccion</a></li>
-    <li><a href="#">Control</a></li>
-    <li><a href="#">Recursos</a></li>
-    <li><a href="#">Mercadeo</a></li>
-    <li><a href="#">Financiera</a></li>
-    <li><a href="#">Produccion</a></li>
-    <li><a href="#">Internacionalizacion</a></li>
-    <li><a href="#">Aspectos</a></li>
-    <li><a href="#">Resumen</a></li>
-</ul>
-<div class="text-center">
+<div class="text-center text-success">
     <h2>
-        DIAGNÓSTICO DE LA EMPRESA
-        Programa de Fortalecimiento Empresarial
+        <b>
+            DIAGNÓSTICO DE LA EMPRESA
+        </b>
     </h2>
+    <div class="h3">
+        Programa de Fortalecimiento Empresarial
+    </div>
+</div>
+{% if object_list %}
+<div class="col-md-8 col-md-offset-2 text-center">
+
+    <table class="table table-bordered table-stripped">
+        <thead>
+        <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">Nombre</th>
+            <th class="text-center">Nit</th>
+            <th class="text-center">Opciones</th>
+        </thead>
+        <tbody>
+        {% for emp in object_list %}
+        <tr>
+            <td>{{ emp.id }}</td>
+            <td>{{ emp.nombre }}</td>
+            <td>{{ emp.nit}}</td>
+            <td>
+                <a class="btn btn-default btn-xs" title="Diagnostico Emp"
+                   data-toggle="tooltip" data-placement="top"
+                   href="{% url 'mincit:diagnostico_emp'%}">
+                    <i class="fa fa-search">Diagnostico_Emp</i>
+                </a>
+                <a class="btn btn-default btn-xs" title="Plan Accion"
+                   data-toggle="tooltip" data-placement="top"
+                   href="">
+                    <i class="fa fa-search">Plan_Accion</i>
+                </a>
+                <a class="btn btn-default btn-xs" title="Diagnostico Idea"
+                   data-toggle="tooltip" data-placement="top"
+                   href="">
+                    <i class="fa fa-search">Diagnostico_Idea</i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% include 'plantilla/pagination.html' %}
+
+    {% else %}
+    <div class="row" style="margin-bottom: 20px">
+        <div class="col-md-12 text-right">
+            <a href="" class="btn btn-success">
+                <i class="fa fa-plus"></i> Registrar Diagnostico de empresa
+            </a>
+        </div>
+    </div>
+    <div class="col-md-offset-2">
+        <h4 class="text-danger">No se han registrado diagnosticos de la
+            empresa.</h4>
+    </div>
+
+
+    {% endif %}
+
 </div>
 {% endblock %}

@@ -1,7 +1,14 @@
 
 
 from django import forms
+from django.utils.safestring import mark_safe
+
 from mincit.models import Informacion, Situacion, Planeacion
+
+
+class HorizontalRadioRenderer(forms.RadioSelect.renderer):
+  def render(self):
+    return mark_safe(u'\n'.join([u'%s\n' % w for w in self]))
 
 
 class LoginForm(forms.Form):
@@ -20,7 +27,8 @@ class InformacionForm(forms.ModelForm):
             'numero_tel',
             'telfono_movil',
             'tiempo_operacion',
-            'productos_servicio',]
+            'productos_servicio',
+        ]
         widgets = {
             'nombre_empresa': forms.TextInput(
                 attrs={'class': 'form-control', 'placeholder': 'Nombre de la Empresa'}),
@@ -29,8 +37,7 @@ class InformacionForm(forms.ModelForm):
             'nombre_contacto': forms.TextInput(
                 attrs={'class': 'form-control',
                        'placeholder': 'nombre de contacto'}),
-            'posicion_empresa': forms.TextInput(attrs={'class': 'form-control',
-                                                        'placeholder': 'posicion de la empresa'}),
+            'posicion_empresa': forms.RadioSelect(renderer=HorizontalRadioRenderer),
             'numero_tel': forms.TextInput(attrs={'class': 'form-control',
                                                  'placeholder': 'numero de telefono',
                                                  'type': 'number'}),

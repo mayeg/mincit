@@ -1,37 +1,38 @@
 {% extends "plantilla/inicio.html" %}
 {% block title %} Incio {% endblock %}
 {% block contenido %}
-
+<h1 class="text-center"><b>Empresas Registradas</b></h1>
 {% if object_list %}
+    <div class="col-md-8 col-md-offset-2 text-center">
         <table class="table table-bordered table-stripped">
             <thead>
                 <tr>
-                    <th style="width: 35px">ID</th>
-                    <th>Nombre</th>
-                    <th>Nit</th>
-                    <th style="width: 90px">Opciones</th>
+                    <th class="text-center">ID</th>
+                    <th class="text-center">Nombre</th>
+                    <th class="text-center">Nit</th>
+                    <th class="text-center">Opciones</th>
             </thead>
             <tbody>
             {% for emp in object_list %}
                 <tr>
                     <td>{{ emp.id }}</td>
                     <td>{{ emp.nombre }}</td>
-                    <td>{{ emp.nit}}</td>
+                    <td>{{ emp.nit }}</td>
                     <td>
                         <a class="btn btn-default btn-xs" title="Diagnostico Emp"
                            data-toggle="tooltip" data-placement="top"
-                            href="{% url 'mincit:diagnostico_emp'%}">
-                            <i class="fa fa-plus"></i>
+                            href="{% url 'mincit:diagnostico_emp' emp.id %}">
+                            <i class="fa fa-search">Diagnostico_Emp</i>
                         </a>
                         <a class="btn btn-default btn-xs" title="Plan Accion"
                            data-toggle="tooltip" data-placement="top"
                             href="">
-                            <i class="fa fa-plus"></i>
+                            <i class="fa fa-search">Plan_Accion</i>
                         </a>
                         <a class="btn btn-default btn-xs" title="Diagnostico Idea"
                            data-toggle="tooltip" data-placement="top"
                             href="">
-                            <i class="fa fa-plus"></i>
+                            <i class="fa fa-search">Diagnostico_Idea</i>
                         </a>
                     </td>
                 </tr>
@@ -45,4 +46,5 @@
         <h3 class="text-info">No se han registrado empresas.</h3>
     {% endif %}
 
+    </div>
 {% endblock %}

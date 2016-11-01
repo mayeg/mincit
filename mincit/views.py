@@ -5,10 +5,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render, redirect
-from django.views.generic import View
+from django.urls.base import reverse
+from django.views.generic import View, DetailView
 from django.views.generic.list import ListView
 from mincit.forms import LoginForm, InformacionForm, SituacionForm, PlaneacionForm
-from models import Empresa
+from models import Empresa, Informacion, Diagnostico_Emp
 
 
 # Create your views here.
@@ -62,8 +63,21 @@ def logout(request):
     return redirect('mincit:login')
 
 
-class Diagnostico_empViews(LoginRequiredMixin, View):
+class Diagnostico_empViews(LoginRequiredMixin, ListView, DetailView):
     login_url = 'mincit:login'
+    model = Diagnostico_Emp
+    template_name = 'diagnostico_emp/diagnostico_emp.html'
+    paginate_by = 10
+    slug_field = 'id_empresa'
+
+    def get_context_data(self, **kwargs):
+        context = super(Diagnostico_empViews, self).get_context_data(
+            **kwargs)
+        return context
+
+    def get_queryset(self):
+        id_empresa = self.kwargs['id_empresa']
+        modelo = Diagnostico_Emp.objects.get(id_empresa=id_empresa)
 
     def get(self, request, *args, **kwargs):
         return render(request, 'diagnostico_emp/diagnostico_emp.html', {})
@@ -71,6 +85,7 @@ class Diagnostico_empViews(LoginRequiredMixin, View):
 
 class InformacionViews(LoginRequiredMixin, View):
     form = InformacionForm
+    model = None
     login_url = 'mincit:login'
     success_url = reverse_lazy('situacion')
     template = 'diagnostico_emp/informacion.html'
@@ -79,17 +94,19 @@ class InformacionViews(LoginRequiredMixin, View):
         'form': form
     }
 
+
     def get(self, request, *args, **kwargs):
         return render(request, self.template, self.context)
 
     def post(self, request, *args, **kwargs ):
         self.form = InformacionForm(request.POST)
+
         if self.form.is_valid():
             self.form.save()
             return render(request, 'diagnostico_emp/situacion.html',
                           self.context)
 
-        return render(request, 'diagnostico_emp/situacion.html', self.context)
+        return render(request, self.template, self.context)
 
 
 class SituacionViews(LoginRequiredMixin, View):
