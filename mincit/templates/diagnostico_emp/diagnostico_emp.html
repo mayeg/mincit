@@ -19,16 +19,16 @@
         <thead>
         <tr>
             <th class="text-center">ID</th>
-            <th class="text-center">Nombre</th>
-            <th class="text-center">Nit</th>
+            <th class="text-center">Asesor</th>
+            <th class="text-center">Fecha</th>
             <th class="text-center">Opciones</th>
         </thead>
         <tbody>
-        {% for emp in object_list %}
+        {% for diag in object_list %}
         <tr>
-            <td>{{ emp.id }}</td>
-            <td>{{ emp.nombre }}</td>
-            <td>{{ emp.nit}}</td>
+            <td>{{ diag.id }}</td>
+            <td>{{ diag.asesor }}</td>
+            <td>{{ diag.fecha}}</td>
             <td>
                 <a class="btn btn-default btn-xs" title="Diagnostico Emp"
                    data-toggle="tooltip" data-placement="top"
@@ -54,17 +54,15 @@
     {% include 'plantilla/pagination.html' %}
 
     {% else %}
-    <div class="row" style="margin-bottom: 20px">
-        <div class="col-md-12 text-right">
-            <a href="" class="btn btn-success">
-                <i class="fa fa-plus"></i> Registrar Diagnostico de empresa
-            </a>
-        </div>
+
+    <div class="col-md-12 text-right">
+        <a href="" class="btn btn-success">
+            <i class="fa fa-plus"></i> Registrar Diagnostico de empresa
+        </a>
     </div>
-    <div class="col-md-offset-2">
-        <h4 class="text-danger">No se han registrado diagnosticos de la
-            empresa.</h4>
-    </div>
+
+    <h4 class="text-danger text-center">No se han registrado diagnosticos de la
+        empresa.</h4>
 
 
     {% endif %}

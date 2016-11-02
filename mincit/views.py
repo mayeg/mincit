@@ -1,12 +1,13 @@
+from __future__ import print_function
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as login_django
 from django.contrib.auth import logout as logout_django
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse_lazy
-from django.shortcuts import render, redirect
-from django.urls.base import reverse
-from django.views.generic import View, DetailView
+from django.shortcuts import render, redirect, get_object_or_404
+from django.utils import timezone
+from django.views.generic import View
 from django.views.generic.list import ListView
 from mincit.forms import LoginForm, InformacionForm, SituacionForm, PlaneacionForm
 from models import Empresa, Informacion, Diagnostico_Emp
@@ -55,29 +56,26 @@ class InicioListViews(LoginRequiredMixin, ListView):
         return context
 
 
-
-
 @login_required(login_url='mincit:login')
 def logout(request):
     logout_django(request)
     return redirect('mincit:login')
 
 
-class Diagnostico_empViews(LoginRequiredMixin, ListView, DetailView):
+class DiagnosticoEmpresaListViews(LoginRequiredMixin, ListView):
     login_url = 'mincit:login'
     model = Diagnostico_Emp
     template_name = 'diagnostico_emp/diagnostico_emp.html'
     paginate_by = 10
-    slug_field = 'id_empresa'
 
-    def get_context_data(self, **kwargs):
-        context = super(Diagnostico_empViews, self).get_context_data(
-            **kwargs)
-        return context
+    # def get_context_data(self, **kwargs):
+    #    context = super(DiagnosticoEmpresaListViews, self).get_context_data(
+    #         **kwargs)
+    #    return context
 
     def get_queryset(self):
-        id_empresa = self.kwargs['id_empresa']
-        modelo = Diagnostico_Emp.objects.get(id_empresa=id_empresa)
+        self.empresa = get_object_or_404(Empresa, id=self.args[0])
+        return Diagnostico_Emp.objects.filter(id_empresa=self.empresa)
 
     def get(self, request, *args, **kwargs):
         return render(request, 'diagnostico_emp/diagnostico_emp.html', {})
