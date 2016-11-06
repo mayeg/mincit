@@ -5,12 +5,14 @@ from django.contrib.auth import logout as logout_django
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse_lazy
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
-from django.utils import timezone
-from django.views.generic import View
+from django.urls.base import reverse
+from django.views.generic import View, CreateView
+from django.views.generic.edit import UpdateView
 from django.views.generic.list import ListView
 from mincit.forms import LoginForm, InformacionForm, SituacionForm, PlaneacionForm
-from models import Empresa, Informacion, Diagnostico_Emp
+from models import Empresa, Informacion, DiagnosticoEmpresa
 
 
 # Create your views here.
@@ -64,47 +66,52 @@ def logout(request):
 
 class DiagnosticoEmpresaListViews(LoginRequiredMixin, ListView):
     login_url = 'mincit:login'
-    model = Diagnostico_Emp
+    model = DiagnosticoEmpresa
     template_name = 'diagnostico_emp/diagnostico_emp.html'
     paginate_by = 10
 
-    # def get_context_data(self, **kwargs):
-    #    context = super(DiagnosticoEmpresaListViews, self).get_context_data(
-    #         **kwargs)
-    #    return context
-
     def get_queryset(self):
         self.empresa = get_object_or_404(Empresa, id=self.args[0])
-        return Diagnostico_Emp.objects.filter(id_empresa=self.empresa)
-
-    def get(self, request, *args, **kwargs):
-        return render(request, 'diagnostico_emp/diagnostico_emp.html', {})
+        return DiagnosticoEmpresa.objects.filter(id_empresa=self.empresa)
 
 
 class InformacionViews(LoginRequiredMixin, View):
     form = InformacionForm
-    model = None
+    model = Informacion
     login_url = 'mincit:login'
-    success_url = reverse_lazy('situacion')
-    template = 'diagnostico_emp/informacion.html'
+    messages = None
+    template = 'empresa/informacion.html'
+
+    def get(self, request, *args, **kwargs):
+        try:
+            self.empresa = get_object_or_404(Empresa, id=self.args[0])
+            self.informacion = Informacion.objects.get(id_empresa__exact=self.empresa)
+            return HttpResponseRedirect('mincit:crear_informacion',
+                                        self.empresa)
+        except Informacion.DoesNotExist:
+            return reverse_lazy('mincit:editar_informacion', self.empresa)
+
+
+class InformacionCreateViews(LoginRequiredMixin, CreateView):
+    model = Informacion
+    form_class = InformacionForm
+    template_name = 'empresa/informacion.html'
+    success_url = reverse_lazy('mincit:index')
     messages = None
     context = {
-        'form': form
+        'form': form_class
     }
 
 
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template, self.context)
-
-    def post(self, request, *args, **kwargs ):
-        self.form = InformacionForm(request.POST)
-
-        if self.form.is_valid():
-            self.form.save()
-            return render(request, 'diagnostico_emp/situacion.html',
-                          self.context)
-
-        return render(request, self.template, self.context)
+class InformacionUpdateViews(LoginRequiredMixin, UpdateView):
+    model = Informacion
+    form_class = InformacionForm
+    template_name = 'empresa/informacion.html'
+    success_url = reverse_lazy('mincit:index')
+    messages = None
+    context = {
+        'form': form_class
+    }
 
 
 class SituacionViews(LoginRequiredMixin, View):

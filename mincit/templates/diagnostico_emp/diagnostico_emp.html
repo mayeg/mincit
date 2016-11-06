@@ -12,6 +12,12 @@
         Programa de Fortalecimiento Empresarial
     </div>
 </div>
+
+<div class="col-md-12 text-right">
+    <a href="" class="btn btn-success">
+        <i class="fa fa-plus"></i> Registrar Diagnostico de empresa
+    </a>
+</div>
 {% if object_list %}
 <div class="col-md-8 col-md-offset-2 text-center">
 
@@ -21,30 +27,19 @@
             <th class="text-center">ID</th>
             <th class="text-center">Asesor</th>
             <th class="text-center">Fecha</th>
+            <th class="text-center">Numero Diagnostico</th>
             <th class="text-center">Opciones</th>
         </thead>
         <tbody>
         {% for diag in object_list %}
         <tr>
-            <td>{{ diag.id }}</td>
-            <td>{{ diag.asesor }}</td>
+            <td>{{ diag.id}}</td>
+            <td>{{ diag.asesor}}</td>
             <td>{{ diag.fecha}}</td>
+            <td>{{ diag.numero_consecutivo}}</td>
             <td>
-                <a class="btn btn-default btn-xs" title="Diagnostico Emp"
-                   data-toggle="tooltip" data-placement="top"
-                   href="{% url 'mincit:diagnostico_emp'%}">
-                    <i class="fa fa-search">Diagnostico_Emp</i>
-                </a>
-                <a class="btn btn-default btn-xs" title="Plan Accion"
-                   data-toggle="tooltip" data-placement="top"
-                   href="">
-                    <i class="fa fa-search">Plan_Accion</i>
-                </a>
-                <a class="btn btn-default btn-xs" title="Diagnostico Idea"
-                   data-toggle="tooltip" data-placement="top"
-                   href="">
-                    <i class="fa fa-search">Diagnostico_Idea</i>
-                </a>
+                <a href="">ver / </a>
+                <a href="">editar</a>
             </td>
         </tr>
         {% endfor %}
@@ -55,11 +50,6 @@
 
     {% else %}
 
-    <div class="col-md-12 text-right">
-        <a href="" class="btn btn-success">
-            <i class="fa fa-plus"></i> Registrar Diagnostico de empresa
-        </a>
-    </div>
 
     <h4 class="text-danger text-center">No se han registrado diagnosticos de la
         empresa.</h4>

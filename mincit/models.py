@@ -13,7 +13,8 @@ class Informacion(models.Model):
         ('socio', 'Socio'),
         ('otro', 'Otro'),
     )
-    nombre_empresa = models.CharField(max_length=250)
+    id_empresa = models.OneToOneField(Empresa, null=True, blank=True,
+                                          on_delete=models.CASCADE)
     razon_social = models.CharField(max_length=250)
     nombre_contacto = models.CharField(max_length=50)
     posicion_empresa = models.CharField(max_length=50, choices=POSICION_EMPRESA_CHOICE,
@@ -80,12 +81,11 @@ class Recurso(models.Model):
     empleados_suficientes = models.CharField(max_length=1)
 
 
-class Diagnostico_Emp(models.Model):
+class DiagnosticoEmpresa(models.Model):
     fecha = models.DateField()
     numero_consecutivo = models.IntegerField()
-    asesor = models.CharField(max_length=100, default="")
-    id_empresa = models.ForeignKey(Empresa, default="", on_delete=models.CASCADE)
-    id_informacion = models.OneToOneField(Informacion, null=True, blank=True, on_delete=models.CASCADE)
+    asesor = models.CharField(max_length=100)
+    id_empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
     id_situacion = models.OneToOneField(Situacion, null=True, blank=True, on_delete=models.CASCADE)
     id_planeacion = models.OneToOneField(Planeacion, null=True, blank=True, on_delete=models.CASCADE)
     id_organizacion = models.OneToOneField(Organizacion, null=True, blank=True, on_delete=models.CASCADE)

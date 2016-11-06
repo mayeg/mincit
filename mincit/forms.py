@@ -20,7 +20,6 @@ class InformacionForm(forms.ModelForm):
     class Meta:
         model = Informacion
         fields = [
-            'nombre_empresa',
             'razon_social',
             'nombre_contacto',
             'posicion_empresa',
@@ -30,8 +29,6 @@ class InformacionForm(forms.ModelForm):
             'productos_servicio',
         ]
         widgets = {
-            'nombre_empresa': forms.TextInput(
-                attrs={'class': 'form-control', 'placeholder': 'Nombre de la Empresa'}),
             'razon_social': forms.TextInput(
                 attrs={'class': 'form-control', 'placeholder': 'razon social'}),
             'nombre_contacto': forms.TextInput(

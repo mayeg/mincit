@@ -1,0 +1,64 @@
+{% extends "plantilla/inicio.html" %}
+{% block title %} diagnostico_emp|Info {% endblock %}
+{% block contenido %}
+<div class="row">
+    <h1 class="text-center">
+        <p>
+            INFORMACION DE LA EMPRESA
+        </p>
+    </h1>
+</div>
+<form class="form-horizontal col-xs-12" action="" method="post">
+    {% csrf_token %}
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">Razón social: </label>
+        <div class="col-sm-4">
+            {{form.razon_social}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">Nombre de
+            contacto: </label>
+        <div class="col-sm-4">
+            {{form.nombre_contacto}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">posicion de la
+            empresa: </label>
+        {{form.posicion_empresa}}
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">Numero telefono: </label>
+        <div class="col-sm-4">
+            {{form.numero_tel}}
+        </div>
+        <label class="col-sm-2 control-label"> Telefono
+            Movil: </label>
+        <div class="col-sm-4">
+            {{form.telfono_movil}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">Tiempo de operacion: </label>
+        <div class="col-sm-4">
+            {{form.tiempo_operacion}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">Cuales son los
+            productos
+            y/o servicios: </label>
+        <div class="col-sm-4">
+            {{form.productos_servicio}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4 col-xs-offset-4">
+            <button type="submit"
+                    class="btn btn-success btn-block btn-flat"> Crear informacion
+            </button>
+        </div><!-- /.col -->
+    </div>
+</form>
+{% endblock %}
