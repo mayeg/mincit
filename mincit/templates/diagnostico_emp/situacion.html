@@ -3,10 +3,8 @@
 {% block contenido %}
 
 <ul class="nav nav-tabs nav-justified">
-    <li>
-        <a href="{% url 'mincit:informacion' %}">Informacion</a>
-    </li>
-    <li><a href="{% url 'mincit:situacion' %}">Situacion</a></li>
+
+    <li><a class="activate" href="">Situacion</a></li>
     <li><a href="#">Planeacion</a></li>
     <li><a href="#">Organizacion</a></li>
     <li><a href="#">Direccion</a></li>
@@ -32,9 +30,7 @@
         </p>
     </h5>
 </div>
-<div>
 
-</div>
 <form class="form-horizontal col-xs-12"
       action="" method="post">
     {% csrf_token %}

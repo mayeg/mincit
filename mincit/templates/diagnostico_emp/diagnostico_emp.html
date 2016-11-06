@@ -34,12 +34,12 @@
         {% for diag in object_list %}
         <tr>
             <td>{{ diag.id}}</td>
-            <td>{{ user.username}}</td>
+            <td>{{ diag.asesor}}</td>
             <td>{{ diag.fecha}}</td>
             <td>{{ diag.numero_consecutivo}}</td>
             <td>
                 <a href="">ver / </a>
-                <a href="">editar</a>
+                <a href="{% url 'mincit:editar_diagnostico' diag.id %}">editar</a>
             </td>
         </tr>
         {% endfor %}

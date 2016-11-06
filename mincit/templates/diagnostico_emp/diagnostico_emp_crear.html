@@ -24,15 +24,20 @@
         </thead>
         <tbody>
         <tr>
-            <td>{{ form.id}}</td>
-            <td>{{ form.username}}</td>
-            <td>{{ form.fecha}}</td>
-            <td>{{ form.numero_consecutivo}}</td>
+            <td>{{ diag.id}}</td>
+            <td>{{ diag.asesor}}</td>
+            <td>{{ diag.fecha}}</td>
+            <td>{{ diag.numero_consecutivo}}</td>
         </tr>
         </tbody>
     </table>
 
     {% include 'plantilla/pagination.html' %}
 
+</div>
+<div class="col-md-12 text-right">
+    <a href="{% url 'mincit:situacion' diag.id %}" class="btn btn-success">
+        <i class="fa fa-plus"></i> Iniciar Registros
+    </a>
 </div>
 {% endblock %}
