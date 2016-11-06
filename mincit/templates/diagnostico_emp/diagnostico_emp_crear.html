@@ -12,13 +12,6 @@
         Programa de Fortalecimiento Empresarial
     </div>
 </div>
-
-<div class="col-md-12 text-right">
-    <a href="{% url 'mincit:diagnostico_empresa_crear' id_empresa %}" class="btn btn-success">
-        <i class="fa fa-plus"></i> Registrar Diagnostico de empresa
-    </a>
-</div>
-{% if object_list %}
 <div class="col-md-8 col-md-offset-2 text-center">
 
     <table class="table table-bordered table-stripped">
@@ -28,34 +21,18 @@
             <th class="text-center">Asesor</th>
             <th class="text-center">Fecha</th>
             <th class="text-center">Numero Diagnostico</th>
-            <th class="text-center">Opciones</th>
         </thead>
         <tbody>
-        {% for diag in object_list %}
         <tr>
-            <td>{{ diag.id}}</td>
-            <td>{{ user.username}}</td>
-            <td>{{ diag.fecha}}</td>
-            <td>{{ diag.numero_consecutivo}}</td>
-            <td>
-                <a href="">ver / </a>
-                <a href="">editar</a>
-            </td>
+            <td>{{ form.id}}</td>
+            <td>{{ form.username}}</td>
+            <td>{{ form.fecha}}</td>
+            <td>{{ form.numero_consecutivo}}</td>
         </tr>
-        {% endfor %}
         </tbody>
     </table>
 
     {% include 'plantilla/pagination.html' %}
-
-    {% else %}
-
-
-    <h4 class="text-danger text-center">No se han registrado diagnosticos de la
-        empresa.</h4>
-
-
-    {% endif %}
 
 </div>
 {% endblock %}

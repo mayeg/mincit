@@ -2,8 +2,7 @@
 
 from django import forms
 from django.utils.safestring import mark_safe
-
-from mincit.models import Informacion, Situacion, Planeacion
+from mincit.models import Informacion, Situacion, Planeacion, DiagnosticoEmpresa
 
 
 class HorizontalRadioRenderer(forms.RadioSelect.renderer):
@@ -14,6 +13,29 @@ class HorizontalRadioRenderer(forms.RadioSelect.renderer):
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=20)
     password = forms.CharField(max_length=20, widget=forms.PasswordInput())
+
+
+class DiagnosticoEmpresaForm(forms.ModelForm):
+    class Meta:
+        model = DiagnosticoEmpresa
+        fields = [
+            'fecha',
+            'numero_consecutivo',
+            'asesor',
+            'id_empresa',
+            'id_situacion',
+            'id_planeacion',
+            'id_organizacion',
+            'id_direccion',
+            'id_control',
+            'id_recursos',
+            'id_mercadeo',
+            'id_financiera',
+            'id_produccion',
+            'id_internacionalizacion',
+            'id_aspectos',
+            'id_resumen',
+        ]
 
 
 class InformacionForm(forms.ModelForm):
