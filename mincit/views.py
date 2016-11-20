@@ -6,13 +6,14 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy
+from django.http import response
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View, CreateView
 from django.views.generic.edit import UpdateView
 from django.views.generic.list import ListView
 from mincit.forms import LoginForm, InformacionForm, SituacionForm, PlaneacionForm, DiagnosticoEmpresaForm
-from models import Empresa, Informacion, DiagnosticoEmpresa, Situacion
+from models import Empresa, Informacion, DiagnosticoEmpresa, Situacion, Planeacion
 from datetime import datetime
 
 
@@ -83,6 +84,7 @@ class DiagnosticoEmpresaListViews(LoginRequiredMixin, ListView):
 
 
 class DiagnosticoEmpresaCreateViews(LoginRequiredMixin, CreateView):
+    login_url = 'mincit:login'
     model = DiagnosticoEmpresa
     form_class = DiagnosticoEmpresaForm
     template_name = 'diagnostico_emp/diagnostico_emp_crear.html'
@@ -96,18 +98,18 @@ class DiagnosticoEmpresaCreateViews(LoginRequiredMixin, CreateView):
             **kwargs)
         empresa = Empresa.objects.get(id=self.args[0])
         fecha = datetime.today()
-        asesor = User.username
-        numero = 1234
+        asesor = 'asesor'
+        numero = 12345
         diagnotico = DiagnosticoEmpresa.objects.create(id_empresa=empresa,
                                                 asesor=asesor, fecha=fecha,
                                                 numero_consecutivo=numero)
-
         context['diag'] = diagnotico
         context['id_diag'] = diagnotico.id
         return context
 
 
 class DiagnosticoEmpresaUpdateViews(LoginRequiredMixin, UpdateView):
+    login_url = 'mincit:login'
     model = DiagnosticoEmpresa
     form_class = DiagnosticoEmpresaForm
     template_name = 'diagnostico_emp/diagnostico_emp_editar.html'
@@ -123,6 +125,7 @@ class DiagnosticoEmpresaUpdateViews(LoginRequiredMixin, UpdateView):
         context = super(DiagnosticoEmpresaUpdateViews, self).get_context_data(
             **kwargs)
         diagnostico = get_object_or_404(DiagnosticoEmpresa, id=self.kwargs['id_diagnostico'])
+        print(diagnostico.id, 'id diagnostico')
         context['id_diag'] = diagnostico.id
         return context
 
@@ -177,32 +180,43 @@ class SituacionViews(LoginRequiredMixin, View):
     model = Situacion
     login_url = 'mincit:login'
     messages = None
-    template = 'empresa/situacion.html'
+    template = 'diagnostico_emp/situacion.html'
 
     def get(self, request, *args, **kwargs):
         self.diagnostico = get_object_or_404(DiagnosticoEmpresa, id=self.args[0])
 
         if self.diagnostico.id_situacion is not None:
-            return HttpResponseRedirect('mincit:editar_situacion', self.diagnostico.id_situacion)
+            return redirect('mincit:editar_situacion', self.diagnostico.id_situacion)
 
-        return HttpResponseRedirect('mincit:crear_situacion', self.diagnostico.id)
+        return redirect('mincit:crear_situacion', self.diagnostico.id)
 
 
 class SituacionCreateViews(LoginRequiredMixin, CreateView):
     model = Situacion
     form_class = SituacionForm
-    template_name = 'empresa/situacion.html'
-    success_url = reverse_lazy('mincit:planeacion')
+    template_name = 'diagnostico_emp/situacion_crear.html'
     messages = None
     context = {
         'form': form_class
     }
 
+    def get_success_url(self):
+        try:
+            diagnostico = get_object_or_404(DiagnosticoEmpresa,
+                                                 id=self.args[0])
+            diagnostico_situacion = DiagnosticoEmpresa.objects.get(
+                id=diagnostico.id)
+            diagnostico_situacion.id_situacion_id = self.object.id
+            print('asignar ids')
+            return 'mincit:planeacion', diagnostico.id
+        except DiagnosticoEmpresa.DoesNotExist:
+            return 'mincit:situacion', diagnostico.id
+
 
 class SituacionUpdateViews(LoginRequiredMixin, UpdateView):
     model = Situacion
     form_class = SituacionForm
-    template_name = 'empresa/situacion.html'
+    template_name = 'diagnostico_emp/situacion_editar.html'
     success_url = reverse_lazy('mincit:diagnostico_emp')
     slug_field = 'id'
     slug_url_kwarg = 'id_situacion'
@@ -213,29 +227,54 @@ class SituacionUpdateViews(LoginRequiredMixin, UpdateView):
 
 class PlaneacionViews(LoginRequiredMixin, View):
     form = PlaneacionForm
+    model = Planeacion
     login_url = 'mincit:login'
-    success_url = reverse_lazy('organizacion')
+    messages = None
     template = 'diagnostico_emp/planeacion.html'
-    context = {
-        'form': form
-    }
 
     def get(self, request, *args, **kwargs):
-        return render(request, self.template, self.context)
+        self.diagnostico = get_object_or_404(DiagnosticoEmpresa,
+                                             id=self.args[0])
 
-    def post(self, request, *args, **kwargs ):
-        self.form = PlaneacionForm(request.POST)
-        if self.form.is_valid():
-            self.form.save()
-            return render(request, 'diagnostico_emp/planeacion.html', self.context)
+        if self.diagnostico.id_situacion is not None:
+            return redirect('mincit:editar_situacion',
+                            self.diagnostico.id_situacion)
 
-        return render(request, 'diagnostico_emp/organizacion.html', self.context)
-
+        return redirect('mincit:crear_situacion', self.diagnostico.id)
 
 
+class PlaneacionCreateViews(LoginRequiredMixin, CreateView):
+    model = Planeacion
+    form_class = PlaneacionForm
+    template_name = 'diagnostico_emp/planeacion_crear.html'
+    messages = None
+    context = {
+        'form': form_class
+    }
+
+    def get_success_url(self):
+        try:
+            diagnostico = get_object_or_404(DiagnosticoEmpresa,
+                                                 id=self.args[0])
+            diagnostico_situacion = DiagnosticoEmpresa.objects.get(
+                id=diagnostico.id)
+            diagnostico_situacion.id_planeacion_id = self.object.id
+            return 'mincit:diagnostico_emp'
+        except DiagnosticoEmpresa.DoesNotExist:
+            return 'mincit:index'
 
 
-
+class PlaneacionUpdateViews(LoginRequiredMixin, UpdateView):
+    model = Planeacion
+    form_class = PlaneacionForm
+    template_name = 'diagnostico_emp/planeacion_editar.html'
+    success_url = reverse_lazy('mincit:diagnostico_emp')
+    slug_field = 'id'
+    slug_url_kwarg = 'id_planeacion'
+    messages = None
+    context = {
+        'form': form_class
+    }
 
 
 

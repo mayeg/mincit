@@ -26,18 +26,57 @@ class Informacion(models.Model):
 
 
 class Situacion(models.Model):
-    sector = models.CharField(max_length=150)
-    planes_largo_p = models.CharField(max_length=250)
-    mision = models.CharField(max_length=1)
-    vision = models.CharField(max_length=1)
-    objetivos = models.CharField(max_length=1)
-    estrategias = models.CharField(max_length=1)
-    plan_accion = models.CharField(max_length=1)
-    establece_valores = models.TextField()
-    objetivos_largo_p = models.TextField()
+
+    SECTOR_EMPRESA_CHOICE = (
+        ('Agricola/Agroindustrial', 'Agricola/agroindustrial'),
+        ('Sector servicios', 'Sector servicios '),
+        ('Manufactura', 'Manufactura'),
+        ('Comercio', 'comercio'),
+    )
+    PLANES_EMPRESA_CHOICE = (
+        ('1', 'Si'),
+        ('0', 'No'),
+    )
+    MISION_CHOICE = (
+        ('1', 'Si'),
+        ('0', 'No'),
+    )
+    VISION_CHOICE = (
+        ('1', 'Si'),
+        ('0', 'No'),
+    )
+    OBJETIVOS_CHOICE = (
+        ('1', 'Si'),
+        ('0', 'No'),
+    )
+    ESTRATEGIAS_CHOICE = (
+        ('1', 'Si'),
+        ('0', 'No'),
+    )
+    PLAN_ACCION_CHOICE = (
+        ('1', 'Si'),
+        ('0', 'No'),
+    )
+    VALORES_EMPRESA_CHOICE = (
+        ('1', 'Si'),
+        ('0', 'No'),
+    )
+    sector = models.CharField(max_length=150, choices=SECTOR_EMPRESA_CHOICE,
+                              default='No seleccion')
+    planes_largo_p = models.CharField(max_length=250, choices=PLANES_EMPRESA_CHOICE,
+                                      default='No seleccion')
+    mision = models.CharField(max_length=20, choices=MISION_CHOICE, default='No seleccion')
+    vision = models.CharField(max_length=20, choices=VISION_CHOICE, default='No seleccion')
+    objetivos = models.CharField(max_length=20, choices=OBJETIVOS_CHOICE, default='No seleccion')
+    estrategias = models.CharField(max_length=20, choices=ESTRATEGIAS_CHOICE, default='No seleccion')
+    plan_accion = models.CharField(max_length=20, choices=PLAN_ACCION_CHOICE, default='No seleccion')
+    establece_valores = models.CharField(max_length=20, choices=VALORES_EMPRESA_CHOICE,
+                                         default='No seleccion')
+    objetivos_largo_plazo = models.TextField()
     recursos = models.TextField()
     debilidades = models.TextField()
     oportunidades = models.TextField()
+    obstaculos = models.TextField()
     ventaja_empresa = models.TextField()
     ventaja_competencia = models.TextField()
 
@@ -83,7 +122,7 @@ class Recurso(models.Model):
 
 class DiagnosticoEmpresa(models.Model):
     fecha = models.DateField()
-    numero_consecutivo = models.IntegerField()
+    numero_consecutivo = models.CharField(max_length=50)
     asesor = models.CharField(max_length=100)
     id_empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
     id_situacion = models.OneToOneField(Situacion, null=True, blank=True, on_delete=models.CASCADE)

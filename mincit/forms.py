@@ -84,16 +84,58 @@ class SituacionForm(forms.ModelForm):
             'estrategias',
             'plan_accion',
             'establece_valores',
-            'objetivos_largo_p',
+            'objetivos_largo_plazo',
             'recursos',
             'debilidades',
             'oportunidades',
+            'obstaculos',
             'ventaja_empresa',
             'ventaja_competencia',
         ]
 
         widgets = {
-                    }
+            'sector': forms.RadioSelect(renderer=HorizontalRadioRenderer),
+            'planes_largo_p': forms.RadioSelect(renderer=HorizontalRadioRenderer),
+            'mision': forms.RadioSelect(renderer=HorizontalRadioRenderer),
+            'vision': forms.RadioSelect(renderer=HorizontalRadioRenderer),
+            'objetivos': forms.RadioSelect(renderer=HorizontalRadioRenderer),
+            'estrategias': forms.RadioSelect(renderer=HorizontalRadioRenderer),
+            'plan_accion': forms.RadioSelect(renderer=HorizontalRadioRenderer),
+            'establece_valores': forms.RadioSelect(renderer=HorizontalRadioRenderer),
+            'objetivos_largo_plazo': forms.Textarea(
+                attrs={'class': 'form-control',
+                       'placeholder': 'Objetivos a largo plazo',
+                       'rows': 3}),
+            'recursos': forms.Textarea(
+                attrs={'class': 'form-control',
+                       'placeholder': 'Recursos',
+                       'rows': 3}),
+
+            'debilidades': forms.Textarea(
+                attrs={'class': 'form-control',
+                       'placeholder': 'debilidades',
+                       'rows': 3}),
+
+            'oportunidades': forms.Textarea(
+                attrs={'class': 'form-control',
+                       'placeholder': 'Oportunidades',
+                       'rows': 3}),
+
+            'obstaculos': forms.Textarea(
+                attrs={'class': 'form-control',
+                       'placeholder': 'Obstaculos',
+                       'rows': 3}),
+
+            'ventaja_empresa': forms.Textarea(
+                attrs={'class': 'form-control',
+                       'placeholder': 'Ventajas de la empresa',
+                       'rows': 3}),
+
+            'ventaja_competencia': forms.Textarea(
+                attrs={'class': 'form-control',
+                       'placeholder': 'Ventaja de la competencia',
+                       'rows': 3}),
+        }
 
 
 class PlaneacionForm(forms.ModelForm):

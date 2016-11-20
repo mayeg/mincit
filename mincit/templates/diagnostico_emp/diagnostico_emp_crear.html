@@ -17,17 +17,17 @@
     <table class="table table-bordered table-stripped">
         <thead>
         <tr>
-            <th class="text-center">ID</th>
+            <th class="text-center">Id</th>
             <th class="text-center">Asesor</th>
             <th class="text-center">Fecha</th>
             <th class="text-center">Numero Diagnostico</th>
         </thead>
         <tbody>
         <tr>
-            <td>{{ diag.id}}</td>
-            <td>{{ diag.asesor}}</td>
-            <td>{{ diag.fecha}}</td>
-            <td>{{ diag.numero_consecutivo}}</td>
+            <td>{{ diag.id }}</td>
+            <td>{{ diag.asesor }}</td>
+            <td>{{ diag.fecha }}</td>
+            <td>{{ diag.numero_consecutivo }}</td>
         </tr>
         </tbody>
     </table>
@@ -36,7 +36,7 @@
 
 </div>
 <div class="col-md-12 text-right">
-    <a href="{% url 'mincit:situacion' diag.id %}" class="btn btn-success">
+    <a href="{% url 'mincit:situacion' id_diag %}" class="btn btn-success">
         <i class="fa fa-plus"></i> Iniciar Registros
     </a>
 </div>
