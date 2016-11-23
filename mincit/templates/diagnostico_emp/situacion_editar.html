@@ -30,9 +30,8 @@
         </p>
     </h5>
 </div>
-
 <form class="form-horizontal col-xs-12"
-      action="{% 'url mincit:crear_situacion' %}" method="post">
+      action="" method="post">
     {% csrf_token %}
     <div class="form-group form-group-s">
         <label class="col-sm-2 control-label">
@@ -50,7 +49,7 @@
             La empresa establece planes a largo plazo
         </label>
         <div class="col-sm-4">
-            {{form.planes_largo_plazo}}
+            {{form.planes_largo_p}}
         </div>
     </div>
     <div class="form-group form-group-s">
@@ -59,83 +58,76 @@
         </label>
         <label class="col-sm-2 control-label">
             Mision
-            <label class="radio-inline">
+
                 {{form.mision}}
-            </label>
 
-            <label class="col-sm-2 control-label">
-                Vision:
-                <label class="radio-inline">
-                    {{form.vision}}
-                </label>
-
-                <label class="col-sm-2 control-label">
-                    Objetivos:
-                    <label class="radio-inline">
-                        {{form.objetivos}}
-                    </label>
-
-                    <label class="col-sm-2 control-label">
-                        Estrategias:
-                        <label class="radio-inline">
-                            {{form.estrategias}}
-                        </label>
-                        <label> class="col-sm-2 control-label">
-                            Plan Accion:
-                            <label class="radio-inline">
-                                {{form.plan_accion}}
-                            </label>
-                        </label>
+        </label>
+        <label class="col-sm-2 control-label">
+            Vision:
+                {{form.vision}}
+        </label>
+        <label class="col-sm-2 control-label">
+            Objetivos:
+                {{form.objetivos}}
+        </label>
+        <label class="col-sm-2 control-label">
+            Estrategias:
+                {{form.estrategias}}
+        </label>
+        <label class="col-sm-2 control-label">
+            Plan Accion:
+                {{form.plan_accion}}
+        </label>
     </div>
     <div class="form-group form-group-s">
         <label class="col-sm-2 control-label">
             La empresa ha establecido valores:
         </label>
-        <label class="radio-inline">
+        <div class="col-sm-4">
             {{form.establece_valores}}
-        </label>
+        </div>
     </div>
     <div class="form-group form-group-s">
         <label class="col-sm-2 control-label">Mencione los tres
             objetivos principales de su empresa en el largo plazo(+ de
             3años:</label>
         <div class="col-sm-4">
-            <textarea class="form-control" rows="3"></textarea>
+           {{form.objetivos_largo_plazo}}
         </div>
     </div>
     <div class="form-group form-group-s">
         <label class="col-sm-2 control-label"> Diga los principales recursos,
             capacidades y competencias que posee la empresa:</label>
         <div class="col-sm-4">
-            <textarea class="form-control" rows="3"></textarea>
+            {{form.recursos}}
         </div>
     </div>
     <div class="form-group form-group-s">
         <label class="col-sm-2 control-label">Mencione cuáles son las
             mayores debilidades que posee la empresa:</label>
         <div class="col-sm-4">
-            <textarea class="form-control" rows="3"></textarea>
+            {{form.debilidades}}
         </div>
     </div>
     <div class="form-group form-group-s">
         <label class="col-sm-2 control-label">. Diga cuál (s) oportunidades
             que le ofrece actualmente el mercado:</label>
         <div class="col-sm-4">
-            <textarea class="form-control" rows="3"></textarea>
+            {{form.oportunidades}}
         </div>
     </div>
     <div class="form-group form-group-s">
-        <label class="col-sm-2 control-label">. Diga cuál (s) son los mayores
+        <label class="col-sm-2 control-label">Diga cuál (s) son los mayores
             obstáculos que hoy encuentra en el mercado:</label>
         <div class="col-sm-4">
-            <textarea class="form-control" rows="3"></textarea>
+            {{form.obstaculos}}
         </div>
     </div>
     <div class="form-group form-group-s">
         <label class="col-sm-2 control-label"> Mencione la Ventaja que ofrece
             la empresa y que es percibida por el cliente:</label>
         <div class="col-sm-4">
-            <textarea class="form-control" rows="3"></textarea>
+            {{form.ventaja_empresa}}
         </div>
     </div>
     <div class="form-group form-group-s">
@@ -143,13 +135,14 @@
             en
             relación a la empresa:</label>
         <div class="col-sm-4">
-            <textarea class="form-control" rows="3"></textarea>
+            {{form.ventaja_competencia}}
         </div>
     </div>
     <div class="row">
         <div class="col-xs-4 col-xs-offset-4 text-center">
             <button type="submit"
-                    class="btn btn-success btn-block btn-flat"> Guardar Cambios
+                    class="btn btn-success btn-block btn-flat"> Guardar y
+                Enviar
             </button>
         </div><!-- /.col -->
     </div>

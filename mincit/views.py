@@ -9,6 +9,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.http import response
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls.base import reverse
 from django.views.generic import View, CreateView
 from django.views.generic.edit import UpdateView
 from django.views.generic.list import ListView
@@ -98,14 +99,20 @@ class DiagnosticoEmpresaCreateViews(LoginRequiredMixin, CreateView):
             **kwargs)
         empresa = Empresa.objects.get(id=self.args[0])
         fecha = datetime.today()
-        asesor = 'asesor'
-        numero = 12345
+        asesor = self.user.username
+        numero = self.get_numero_diagnostico(empresa)
         diagnotico = DiagnosticoEmpresa.objects.create(id_empresa=empresa,
                                                 asesor=asesor, fecha=fecha,
                                                 numero_consecutivo=numero)
         context['diag'] = diagnotico
         context['id_diag'] = diagnotico.id
         return context
+
+    def get_numero_diagnostico(self):
+        # DiagnosticoEmpresa.objects. consultar los diagnosticos de la empresa
+        #  ordenarlos por numero descendente y obtener solo el primer
+        # resultado. return obj.numero != none + 1 si es none 1
+        pass
 
 
 class DiagnosticoEmpresaUpdateViews(LoginRequiredMixin, UpdateView):
@@ -183,10 +190,11 @@ class SituacionViews(LoginRequiredMixin, View):
     template = 'diagnostico_emp/situacion.html'
 
     def get(self, request, *args, **kwargs):
-        self.diagnostico = get_object_or_404(DiagnosticoEmpresa, id=self.args[0])
-
+        self.diagnostico = get_object_or_404(
+            DiagnosticoEmpresa, id=self.kwargs['id_diagnostico'])
         if self.diagnostico.id_situacion is not None:
-            return redirect('mincit:editar_situacion', self.diagnostico.id_situacion)
+            return redirect('mincit:editar_situacion',
+                            id_situacion=self.diagnostico.id_situacion.id)
 
         return redirect('mincit:crear_situacion', self.diagnostico.id)
 
@@ -199,18 +207,21 @@ class SituacionCreateViews(LoginRequiredMixin, CreateView):
     context = {
         'form': form_class
     }
+    success_url = None
 
-    def get_success_url(self):
+    def form_valid(self, form):
+        response = super(SituacionCreateViews, self).form_valid(form)
+        diagnostico = DiagnosticoEmpresa.objects.get(
+            id=self.kwargs['id_diagnostico'])
+        url_reverse = "mincit:planeacion"
         try:
-            diagnostico = get_object_or_404(DiagnosticoEmpresa,
-                                                 id=self.args[0])
-            diagnostico_situacion = DiagnosticoEmpresa.objects.get(
-                id=diagnostico.id)
-            diagnostico_situacion.id_situacion_id = self.object.id
-            print('asignar ids')
-            return 'mincit:planeacion', diagnostico.id
+            diagnostico.id_situacion = self.object
+            diagnostico.save()
         except DiagnosticoEmpresa.DoesNotExist:
-            return 'mincit:situacion', diagnostico.id
+            url_reverse = 'mincit:situacion'
+        self.success_url = reverse_lazy(
+            url_reverse, kwargs={'id_diagnostico': diagnostico.id})
+        return response
 
 
 class SituacionUpdateViews(LoginRequiredMixin, UpdateView):
@@ -224,6 +235,7 @@ class SituacionUpdateViews(LoginRequiredMixin, UpdateView):
     context = {
         'form': form_class
     }
+
 
 class PlaneacionViews(LoginRequiredMixin, View):
     form = PlaneacionForm
@@ -251,17 +263,6 @@ class PlaneacionCreateViews(LoginRequiredMixin, CreateView):
     context = {
         'form': form_class
     }
-
-    def get_success_url(self):
-        try:
-            diagnostico = get_object_or_404(DiagnosticoEmpresa,
-                                                 id=self.args[0])
-            diagnostico_situacion = DiagnosticoEmpresa.objects.get(
-                id=diagnostico.id)
-            diagnostico_situacion.id_planeacion_id = self.object.id
-            return 'mincit:diagnostico_emp'
-        except DiagnosticoEmpresa.DoesNotExist:
-            return 'mincit:index'
 
 
 class PlaneacionUpdateViews(LoginRequiredMixin, UpdateView):
