@@ -226,13 +226,24 @@ class SituacionUpdateViews(LoginRequiredMixin, UpdateView):
     model = Situacion
     form_class = SituacionForm
     template_name = 'diagnostico_emp/situacion_editar.html'
-    success_url = reverse_lazy('mincit:diagnostico_emp')
+    success_url = None
     slug_field = 'id'
     slug_url_kwarg = 'id_situacion'
     messages = None
     context = {
         'form': form_class
     }
+
+    def get_success_url(self):
+        try:
+            diagnostico = DiagnosticoEmpresa.objects.get(
+                id=self.kwargs['id_situacion'])
+            url_reverse = "mincit:planeacion"
+        except DiagnosticoEmpresa.DoesNotExist:
+            url_reverse = 'mincit:situacion'
+        return reverse(
+            url_reverse, kwargs={'id_diagnostico': diagnostico.id})
+
 
 class PlaneacionViews(LoginRequiredMixin, View):
     form = PlaneacionForm
