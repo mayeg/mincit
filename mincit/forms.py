@@ -150,7 +150,12 @@ class PlaneacionForm(forms.ModelForm):
         ]
 
         widgets = {
-                    }
+            'elabora_planes': forms.RadioSelect(),
+            'tiempo_planeacion': forms.RadioSelect(),
+            'participacion_empleados': forms.RadioSelect(),
+            'conocen_objetivos': forms.RadioSelect(),
+            'estrategias_plan_accion': forms.RadioSelect(),
+        }
 
 
 

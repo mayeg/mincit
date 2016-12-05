@@ -209,8 +209,7 @@ class SituacionCreateViews(LoginRequiredMixin, CreateView):
     }
     success_url = None
 
-    def form_valid(self, form):
-        response = super(SituacionCreateViews, self).form_valid(form)
+    def get_success_url(self):
         diagnostico = DiagnosticoEmpresa.objects.get(
             id=self.kwargs['id_diagnostico'])
         url_reverse = "mincit:planeacion"
@@ -219,9 +218,8 @@ class SituacionCreateViews(LoginRequiredMixin, CreateView):
             diagnostico.save()
         except DiagnosticoEmpresa.DoesNotExist:
             url_reverse = 'mincit:situacion'
-        self.success_url = reverse_lazy(
+        return reverse(
             url_reverse, kwargs={'id_diagnostico': diagnostico.id})
-        return response
 
 
 class SituacionUpdateViews(LoginRequiredMixin, UpdateView):
@@ -235,7 +233,6 @@ class SituacionUpdateViews(LoginRequiredMixin, UpdateView):
     context = {
         'form': form_class
     }
-
 
 class PlaneacionViews(LoginRequiredMixin, View):
     form = PlaneacionForm

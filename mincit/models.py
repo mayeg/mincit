@@ -82,11 +82,40 @@ class Situacion(models.Model):
 
 
 class Planeacion(models.Model):
-    elabora_planes = models.CharField(max_length=50)
-    tiempo_planeacion = models.CharField(max_length=50)
-    participacion_empleados = models.CharField(max_length=1)
-    conocen_objetivos = models.CharField(max_length=1)
-    estartegias_plan_accion = models.CharField(max_length=1)
+    ELABORA_PLANES_CHOICE = (
+        ('semanales', 'Semanales'),
+        ('mensuales', 'Mensuales'),
+        ('trimestrales', 'Trimestrales'),
+        ('semestrales', 'Semestrales'),
+        ('anuales', 'Anuales'),
+        ('largo_plazo', 'Largo Plazo'),
+    )
+    TIEMPO_PLANEACION_CHOICE = (
+        ('1', 'Si'),
+        ('0', 'No'),
+    )
+    PARTICIPACION_EMPLEADOS_CHOICE = (
+        ('1', 'Si'),
+        ('0', 'No'),
+    )
+    CONOCEN_OBJETIVOS_CHOICE = (
+        ('1', 'Si'),
+        ('0', 'No'),
+    )
+    ESTRATEGIAS_PLAN_ACCION_CHOICE = (
+        ('1', 'Si'),
+        ('0', 'No'),
+    )
+    elabora_planes = models.CharField(max_length=50, choices=ELABORA_PLANES_CHOICE,
+                                      default='No seleccion')
+    tiempo_planeacion = models.CharField(max_length=50, choices=TIEMPO_PLANEACION_CHOICE,
+                                         default='No seleccion')
+    participacion_empleados = models.CharField(max_length=1, choices=PARTICIPACION_EMPLEADOS_CHOICE,
+                                               default='No seleccion')
+    conocen_objetivos = models.CharField(max_length=1, choices=CONOCEN_OBJETIVOS_CHOICE,
+                                         default='No seleccion')
+    estartegias_plan_accion = models.CharField(max_length=1, choices=ESTRATEGIAS_PLAN_ACCION_CHOICE,
+                                               default='No seleccion')
 
 
 class Organizacion(models.Model):
