@@ -243,7 +243,7 @@ class PlaneacionViews(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         self.diagnostico = get_object_or_404(DiagnosticoEmpresa,
-                                             id=self.args[0])
+                                             id=self.kwargs['id_diagnostico'])
 
         if self.diagnostico.id_situacion is not None:
             return redirect('mincit:editar_situacion',
