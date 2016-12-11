@@ -274,7 +274,7 @@ class PlaneacionCreateViews(LoginRequiredMixin, CreateView):
     }
 
     def get_context_data(self, **kwargs):
-        context = super(DiagnosticoEmpresaUpdateViews, self).get_context_data(
+        context = super(PlaneacionCreateViews, self).get_context_data(
             **kwargs)
         diagnostico = get_object_or_404(DiagnosticoEmpresa,
                                         id=self.kwargs['id_diagnostico'])
