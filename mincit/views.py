@@ -257,7 +257,8 @@ class PlaneacionViews(LoginRequiredMixin, View):
                                              id=self.kwargs['id_diagnostico'])
 
         if self.diagnostico.id_situacion is not None:
-            return redirect('mincit:editar_planeacion',
+            if self.diagnostico.id_planeacion is not None:
+                return redirect('mincit:editar_planeacion',
                             self.diagnostico.id_planeacion)
 
         return redirect('mincit:crear_planeacion', self.diagnostico.id)

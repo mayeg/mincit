@@ -119,34 +119,141 @@ class Planeacion(models.Model):
 
 
 class Organizacion(models.Model):
-    organigrama = models.CharField(max_length=1)
-    procesos_documentados = models.CharField(max_length=1)
-    evalua_procesos = models.CharField(max_length=1)
-    automatiza_procesos = models.CharField(max_length=1)
+    ORGANIGRAMA_CHOICE = (
+        ('si', 'Si'),
+        ('mas o menos', 'Mas o Menos'),
+        ('no', 'No'),
+    )
+    PROCESOS_DOCUMENTADOS_CHOICE = (
+        ('si', 'Si'),
+        ('mas o menos', 'Mas o Menos'),
+        ('no', 'No'),
+    )
+    EVALUA_PROCESOS_CHOICE = (
+        ('si', 'Si'),
+        ('mas o menos', 'Mas o Menos'),
+        ('no', 'No'),
+    )
+    AUTOMATIZA_PROCESOS_CHOICE = (
+        ('si', 'Si'),
+        ('mas o menos', 'Mas o Menos'),
+        ('no', 'No'),
+    )
+    organigrama = models.CharField(max_length=29, choices=ORGANIGRAMA_CHOICE,
+                                   default='No seleccion')
+    procesos_documentados = models.CharField(max_length=20, choices=PROCESOS_DOCUMENTADOS_CHOICE,
+                                             default='No seleccion')
+    evalua_procesos = models.CharField(max_length=20, choices=EVALUA_PROCESOS_CHOICE,
+                                       default='No seleccion')
+    automatiza_procesos = models.CharField(max_length=20, choices=AUTOMATIZA_PROCESOS_CHOICE,
+                                           default='No seleccion')
 
 
 class Direccion(models.Model):
-    maximo_compromiso = models.CharField(max_length=1)
-    clima_laboral = models.CharField(max_length=1)
-    motivacion_empleados = models.CharField(max_length=1)
-    decisiones_unilaterales = models.CharField(max_length=1)
-    decisiones_consenso = models.CharField(max_length=1)
-    define_acciones = models.CharField(max_length=1)
+    MAXIMO_COMPROMISO_CHOICE = (
+        ('si', 'Si'),
+        ('mas o menos', 'Mas o Menos'),
+        ('no', 'No'),
+    )
+    CLIMA_LABORAL_CHOICE = (
+        ('si', 'Si'),
+        ('mas o menos', 'Mas o Menos'),
+        ('no', 'No'),
+    )
+    MOTIVACION_EMPLEADOS_CHOICE = (
+        ('si', 'Si'),
+        ('mas o menos', 'Mas o Menos'),
+        ('no', 'No'),
+    )
+    DECISIONES_UNILATERALES_CHOICE = (
+        ('si', 'Si'),
+        ('mas o menos', 'Mas o Menos'),
+        ('no', 'No'),
+    )
+    DECISIONES_CONSENSO_CHOICE = (
+        ('si', 'Si'),
+        ('no', 'No'),
+    )
+    DEFINE_ACCIONES_CHOICE = (
+        ('si', 'Si'),
+        ('mas o menos', 'Mas o Menos'),
+        ('no', 'No'),
+    )
+    maximo_compromiso = models.CharField(max_length=20, choices=MAXIMO_COMPROMISO_CHOICE,
+                                         default='No seleccion')
+    clima_laboral = models.CharField(max_length=20, choices=CLIMA_LABORAL_CHOICE,
+                                     default='No seleccion')
+    motivacion_empleados = models.CharField(max_length=20, choices=MOTIVACION_EMPLEADOS_CHOICE,
+                                            default='No seleccion')
+    decisiones_unilaterales = models.CharField(max_length=20, choices=DECISIONES_UNILATERALES_CHOICE,
+                                               default='No seleccion')
+    decisiones_consenso = models.CharField(max_length=20, choices=DECISIONES_CONSENSO_CHOICE,
+                                           default='No seleccion')
+    define_acciones = models.CharField(max_length=20, choices=DEFINE_ACCIONES_CHOICE,
+                                       default='No seleccion')
 
 
 class Control(models.Model):
-    sistema_control = models.CharField(max_length=1)
-    compara_planeado = models.CharField(max_length=1)
-    uso_indicadores = models.CharField(max_length=1)
-    monitoreo_indicadores = models.CharField(max_length=1)
+    SISTEMA_CONTROL_CHOICE = (
+        ('si', 'Si'),
+        ('mas o menos', 'Mas o Menos'),
+        ('no', 'No'),
+    )
+    COMPARA_PLANEADO_CHOICE = (
+        ('si', 'Si'),
+        ('mas o menos', 'Mas o Menos'),
+        ('no', 'No'),
+    )
+    USO_INDICADORES_CHOICE = (
+        ('si', 'Si'),
+        ('mas o menos', 'Mas o Menos'),
+        ('no', 'No'),
+    )
+    MONITOREO_INDICADORES_CHOICE = (
+        ('si', 'Si'),
+        ('mas o menos', 'Mas o Menos'),
+        ('no', 'No'),
+    )
+    sistema_control = models.CharField(max_length=20, choices=SISTEMA_CONTROL_CHOICE,
+                                       default='No seleccion')
+    compara_planeado = models.CharField(max_length=20, choices=COMPARA_PLANEADO_CHOICE,
+                                        default='No seleccion')
+    uso_indicadores = models.CharField(max_length=20, choices=USO_INDICADORES_CHOICE,
+                                       default='No seleccion')
+    monitoreo_indicadores = models.CharField(max_length=20, choices=MONITOREO_INDICADORES_CHOICE,
+                                             default='No seleccion')
 
 
 class Recurso(models.Model):
-    contrata_directamente = models.CharField(max_length=1)
-    comibina_contratacion = models.CharField(max_length=1)
-    procesos_seleccion = models.CharField(max_length=1)
+    CONTRATA_DIRECTAMENTE_CHOICE = (
+        ('si', 'Si'),
+        ('no', 'No'),
+    )
+    COMBINA_CONTRATACION_CHOICE = (
+        ('si', 'Si'),
+        ('mas o menos', 'Mas o Menos'),
+        ('no', 'No'),
+    )
+    PROCESOS_SELECCION_CHOICE = (
+        ('si', 'Si'),
+        ('mas o menos', 'Mas o Menos'),
+        ('no', 'No'),
+    )
+    EMPLEADOS_SUFICIENTES_CHOICE = (
+        ('si', 'Si'),
+        ('mas o menos', 'Mas o Menos'),
+        ('no', 'No'),
+    )
+
+    contrata_directamente = models.CharField(max_length=20, choices=CONTRATA_DIRECTAMENTE_CHOICE,
+                                             default='No seleccion')
+    comibina_contratacion = models.CharField(max_length=20, choices=COMBINA_CONTRATACION_CHOICE,
+                                             default='No seleccion')
+    procesos_seleccion = models.CharField(max_length=20, choices=PROCESOS_SELECCION_CHOICE,
+                                          default='No seleccion')
     numero_empleados = models.IntegerField()
-    empleados_suficientes = models.CharField(max_length=1)
+    empleados_suficientes = models.CharField(max_length=20, choices=EMPLEADOS_SUFICIENTES_CHOICE,
+                                             default='No seleccion')
 
 
 class DiagnosticoEmpresa(models.Model):
