@@ -273,6 +273,14 @@ class PlaneacionCreateViews(LoginRequiredMixin, CreateView):
         'form': form_class
     }
 
+    def get_context_data(self, **kwargs):
+        context = super(DiagnosticoEmpresaUpdateViews, self).get_context_data(
+            **kwargs)
+        diagnostico = get_object_or_404(DiagnosticoEmpresa,
+                                        id=self.kwargs['id_diagnostico'])
+        context['id_diag'] = diagnostico.id
+        return context
+
 
 class PlaneacionUpdateViews(LoginRequiredMixin, UpdateView):
     model = Planeacion
