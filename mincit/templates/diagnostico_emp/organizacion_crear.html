@@ -1,0 +1,67 @@
+{% extends "plantilla/inicio.html" %}
+{% block title %} DIAGNOSTICO_EMP {% endblock %}
+{% block contenido %}
+<ul class="nav nav-tabs nav-justified">
+    <li><a href="{% url 'mincit:situacion' id_diagnostico=id_diag %}">Situacion</a></li>
+    <li><a href="{% url 'mincit:planeacion' id_diagnostico=id_diag %}">Planeacion</a></li>
+    <li class="active"><a href="#">Organizacion</a></li>
+    <li><a href="#">Direccion</a></li>
+    <li><a href="#">Control</a></li>
+    <li><a href="#">Recursos</a></li>
+    <li><a href="#">Mercadeo</a></li>
+    <li><a href="#">Financiera</a></li>
+    <li><a href="#">Produccion</a></li>
+    <li><a href="#">Internacionalizacion</a></li>
+    <li><a href="#">Aspectos</a></li>
+    <li><a href="#">Resumen</a></li>
+</ul>
+<div class="row">
+    <h1 class="text-center text-success">
+        <p>
+            ORGANIZACION
+        </p>
+    </h1>
+</div>
+<form class="form-horizontal col-xs-12" action="" method="post">
+    {% csrf_token %}
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">La empresa tiene el organigrama
+            (cargos definidos y manuales de funciones) documentados y
+            actualizados: </label>
+        <div class="col-sm-4">
+            {{form.organigrama}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label"> Los procesos de la empresa ha
+            sido documentados. </label>
+        <div class="col-sm-4">
+            {{form.procesos_documentados}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label"> Se evalúan los procesos para
+            eliminar los ineficaces e incluir aquellos que sean
+            necesarios. </label>
+        <div class="col-sm-4">
+            {{form.evalua_procesos}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">La empresa procura
+            automatizar/modernizar todos los procesos</label>
+        <div class="col-sm-4">
+            {{form.automatiza_procesos}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4 col-xs-offset-4">
+            <button type="submit"
+                    class="btn btn-success btn-block btn-flat"> Guardar y
+                Enviar
+            </button>
+        </div><!-- /.col -->
+    </div>
+
+</form>
+{% endblock %}

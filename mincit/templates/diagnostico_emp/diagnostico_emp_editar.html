@@ -4,8 +4,8 @@
 <ul class="nav nav-tabs nav-justified">
 
     <li><a href="{% url 'mincit:situacion' id_diag %}">Situacion</a></li>
-    <li><a href="#">Planeacion</a></li>
-    <li><a href="#">Organizacion</a></li>
+    <li><a href="{% url 'mincit:planeacion' id_diag %}">Planeacion</a></li>
+    <li><a href="{% url 'mincit:organizacion' id_diag %}">Organizacion</a></li>
     <li><a href="#">Direccion</a></li>
     <li><a href="#">Control</a></li>
     <li><a href="#">Recursos</a></li>

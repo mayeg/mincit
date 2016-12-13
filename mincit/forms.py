@@ -2,7 +2,8 @@
 
 from django import forms
 from django.utils.safestring import mark_safe
-from mincit.models import Informacion, Situacion, Planeacion, DiagnosticoEmpresa
+from mincit.models import Informacion, Situacion, Planeacion, DiagnosticoEmpresa, \
+    Organizacion, Direccion
 
 
 class HorizontalRadioRenderer(forms.RadioSelect.renderer):
@@ -158,6 +159,45 @@ class PlaneacionForm(forms.ModelForm):
         }
 
 
+class OrganizacionForm(forms.ModelForm):
+    class Meta:
+        model = Organizacion
+
+        fields = [
+            'organigrama',
+            'procesos_documentados',
+            'evalua_procesos',
+            'automatiza_procesos',
+        ]
+
+        widgets = {
+            'organigrama': forms.RadioSelect(),
+            'procesos_documentados': forms.RadioSelect(),
+            'evalua_procesos': forms.RadioSelect(),
+            'automatiza_procesos': forms.RadioSelect(),
+        }
+
+
+class DireccionForm(forms.ModelForm):
+    class Meta:
+        model = Direccion
+        fields = [
+            'maximo_compromiso',
+            'clima_laboral',
+            'motivacion_empleados',
+            'decisiones_unilaterales',
+            'decisiones_consenso',
+            'define_acciones',
+        ]
+
+        widgets = {
+            'maximo_compromiso': forms.RadioSelect(),
+            'clima_laboral': forms.RadioSelect(),
+            'motivacion_empleados': forms.RadioSelect(),
+            'decisiones_unilaterales': forms.RadioSelect(),
+            'decisiones_consenso': forms.RadioSelect(),
+            'define_acciones': forms.RadioSelect(),
+        }
 
 
 

@@ -1,0 +1,82 @@
+{% extends "plantilla/inicio.html" %}
+{% block title %} DIAGNOSTICO_EMP {% endblock %}
+{% block contenido %}
+<ul class="nav nav-tabs nav-justified">
+    <li>
+        <a href="{% url 'mincit:situacion' id_diagnostico=id_diag %}">Situacion</a>
+    </li>
+    <li><a href="{% url 'mincit:planeacion' id_diagnostico=id_diag %}">Planeacion</a>
+    </li>
+    <li><a href="{% url 'mincit:organizacion' id_diagnostico=id_diag %}">Organizacion</a>
+    </li>
+    <li class="active"><a href="">Direccion</a></li>
+    <li><a href="#">Control</a></li>
+    <li><a href="#">Recursos</a></li>
+    <li><a href="#">Mercadeo</a></li>
+    <li><a href="#">Financiera</a></li>
+    <li><a href="#">Produccion</a></li>
+    <li><a href="#">Internacionalizacion</a></li>
+    <li><a href="#">Aspectos</a></li>
+    <li><a href="#">Resumen</a></li>
+</ul>
+<div class="row">
+    <h1 class="text-center text-success">
+        <p>
+            DIRECCION/LIDERAZGO
+        </p>
+    </h1>
+</div>
+<form class="form-horizontal col-xs-12" action="" method="post">
+    {% csrf_token %}
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">La gerencia obtiene el máximo
+            compromiso de sus colaboradores: </label>
+        <div class="col-sm-4">
+            {{form.maximo_compromiso}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">La gerencia trabaja por un clima
+            laboral adecuado. </label>
+        <div class="col-sm-4">
+            {{form.clima_laboral}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label"> La gerencia motiva a los
+            empleados a innovar, trabajar en equipo y mejorar el
+            desempeño. </label>
+        <div class="col-sm-4">
+            {{form.motivacion_empleados}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">Las decisiones se toman,
+            unilateralmente.</label>
+        <div class="col-sm-4">
+            {{form.decisiones_unilaterales}}
+        </div>
+        <label>
+            en consenso:</label>
+             <div class="col-sm-4">
+            {{form.decisiones_consenso}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">La gerencia define acciones
+            concretas buscando mejorar sus resultados.</label>
+        <div class="col-sm-4">
+            {{form.define_acciones}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4 col-xs-offset-4">
+            <button type="submit"
+                    class="btn btn-success btn-block btn-flat"> Guardar y
+                Enviar
+            </button>
+        </div><!-- /.col -->
+    </div>
+
+</form>
+{% endblock %}

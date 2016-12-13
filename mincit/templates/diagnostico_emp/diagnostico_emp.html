@@ -39,7 +39,7 @@
             <td>{{ diag.numero_consecutivo}}</td>
             <td>
                 <a href="">ver / </a>
-                <a href="{% url 'mincit:editar_diagnostico' diag.id %}">editar</a>
+                <a href="{% url 'mincit:editar_diagnostico' id_diagnostico=diag.id %}">editar</a>
             </td>
         </tr>
         {% endfor %}

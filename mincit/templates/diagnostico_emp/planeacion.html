@@ -16,107 +16,11 @@
       <li><a href="#">Resumen</a></li>
 </ul>
 <div class="row">
-<h1 class="text-center">
+<h1 class="text-center text-success">
     <p>
         PLANEACION
     </p>
 </h1>
 </div>
-<form class="form-horizontal col-xs-12" action="" method="post">
-    {% csrf_token %}
-  <div class="form-group form-group-s">
-    <label class="col-sm-2 control-label" for="planes">La empresa elabora
-        planes: </label>
-    <div class="col-sm-4">
-      <label class="radio-inline">
-  <input type="radio" name="inlineRadioOptions" id="planes" value="option1">
-        Semanales
-</label>
-        <label class="radio-inline">
-  <input type="radio" name="inlineRadioOptions" id="planesm" value="option1">
-        Mensuales
-</label>
-        <label class="radio-inline">
-  <input type="radio" name="inlineRadioOptions" id="planest" value="option1">
-        Trimestrales
-</label>
-        <label class="radio-inline">
-  <input type="radio" name="inlineRadioOptions" id="planess" value="option1">
-        Semestrales
-</label>
-     <label class="radio-inline">
-  <input type="radio" name="inlineRadioOptions" id="planea" value="option1">
-        Anuales
-</label>
-        <label class="radio-inline">
-  <input type="radio" name="inlineRadioOptions" id="lgplazo" value="option1">
-        Largo plazo
-</label>
-    </div>
-  </div>
-  <div class="form-group form-group-s">
-    <label class="col-sm-2 control-label" for="tiempo"> La gerencia dedica tiempo
-        a la planeación.  </label>
-    <div class="col-sm-4">
-      <label class="radio-inline">
-  <input type="radio" name="inlineRadioOptions" id="tiempo" value="option1">
-        Si
-</label>
-        <label class="radio-inline">
-  <input type="radio" name="inlineRadioOptions" id="tiempon" value="option1">
-        No
-</label>
-    </div>
-  </div>
-  <div class="form-group form-group-s">
-    <label class="col-sm-2 control-label" for="tiempo">  La gerencia permite la
-        participación de sus empleados en el proceso de planeación.  </label>
-    <div class="col-sm-4">
-      <label class="radio-inline">
-  <input type="radio" name="inlineRadioOptions" id="tiempo" value="option1">
-        Si
-</label>
-        <label class="radio-inline">
-  <input type="radio" name="inlineRadioOptions" id="tiempon" value="option1">
-        No
-</label>
-    </div>
-  </div>
-  <div class="form-group form-group-s">
-    <label class="col-sm-2 control-label" for="tiempo">Los empleados conocen
-        los objetivos y planes de la empresa. </label>
-    <div class="col-sm-4">
-      <label class="radio-inline">
-  <input type="radio" name="inlineRadioOptions" id="tiempo" value="option1">
-        Si
-</label>
-        <label class="radio-inline">
-  <input type="radio" name="inlineRadioOptions" id="tiempon" value="option1">
-        No
-</label>
-    </div>
-  </div>
-   <div class="form-group form-group-s">
-    <label class="col-sm-2 control-label" for="tiempo"> La empresa establece
-        estrategias, planes de acción que conduzcan al crecimiento. </label>
-    <div class="col-sm-4">
-      <label class="radio-inline">
-  <input type="radio" name="inlineRadioOptions" id="tiempo" value="option1">
-        Si
-</label>
-        <label class="radio-inline">
-  <input type="radio" name="inlineRadioOptions" id="tiempon" value="option1">
-        No
-</label>
-    </div>
-  </div>
-    <div class="row">
-                <div class="col-xs-4 col-xs-offset-4">
-                    <button type="submit"
-                            class="btn btn-success btn-block btn-flat"> Guardar y
-                        Enviar </button>
-                </div><!-- /.col -->
-            </div>
 
-</form>
 {% endblock %}
