@@ -13,9 +13,12 @@ from django.urls.base import reverse
 from django.views.generic import View, CreateView
 from django.views.generic.edit import UpdateView
 from django.views.generic.list import ListView
-from mincit.forms import LoginForm, InformacionForm, SituacionForm, PlaneacionForm, DiagnosticoEmpresaForm, \
-    OrganizacionForm, DireccionForm
-from models import Empresa, Informacion, DiagnosticoEmpresa, Situacion, Planeacion, Direccion, Organizacion
+from mincit.forms import LoginForm, InformacionForm, SituacionForm, \
+    PlaneacionForm, DiagnosticoEmpresaForm, \
+    OrganizacionForm, DireccionForm, ControlForm
+from mincit.models import Control
+from models import Empresa, Informacion, DiagnosticoEmpresa, Situacion, \
+    Planeacion, Direccion, Organizacion
 from datetime import datetime
 
 
@@ -44,7 +47,6 @@ class LoginView(View):
             self.message = 'error, datos incorrectos'
 
         return render(request, self.template, self.get_contex())
-
 
     def get_contex(self):
         return {'form': self.form, 'message': self.message}
@@ -75,7 +77,8 @@ class DiagnosticoEmpresaListViews(LoginRequiredMixin, ListView):
     paginate_by = 10
 
     def get_context_data(self, **kwargs):
-        context = super(DiagnosticoEmpresaListViews, self).get_context_data(**kwargs)
+        context = super(DiagnosticoEmpresaListViews, self).get_context_data(
+            **kwargs)
         self.empresa = get_object_or_404(Empresa, id=self.args[0])
         context['id_empresa'] = self.empresa.id
         return context
@@ -103,8 +106,9 @@ class DiagnosticoEmpresaCreateViews(LoginRequiredMixin, CreateView):
         asesor = self.user.username
         numero = self.get_numero_diagnostico(empresa)
         diagnotico = DiagnosticoEmpresa.objects.create(id_empresa=empresa,
-                                                asesor=asesor, fecha=fecha,
-                                                numero_consecutivo=numero)
+                                                       asesor=asesor,
+                                                       fecha=fecha,
+                                                       numero_consecutivo=numero)
         context['diag'] = diagnotico
         context['id_diag'] = diagnotico.id
         return context
@@ -132,7 +136,8 @@ class DiagnosticoEmpresaUpdateViews(LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super(DiagnosticoEmpresaUpdateViews, self).get_context_data(
             **kwargs)
-        diagnostico = get_object_or_404(DiagnosticoEmpresa, id=self.kwargs['id_diagnostico'])
+        diagnostico = get_object_or_404(DiagnosticoEmpresa,
+                                        id=self.kwargs['id_diagnostico'])
         context['id_diag'] = diagnostico.id
         return context
 
@@ -238,7 +243,7 @@ class SituacionUpdateViews(LoginRequiredMixin, UpdateView):
         try:
             situacion = Situacion.objects.get(
                 id=self.kwargs['id_situacion'])
-            diagnostico=DiagnosticoEmpresa.objects.get(id_situacion=situacion)
+            diagnostico = DiagnosticoEmpresa.objects.get(id_situacion=situacion)
             url_reverse = "mincit:planeacion"
         except DiagnosticoEmpresa.DoesNotExist:
             url_reverse = 'mincit:situacion'
@@ -256,8 +261,8 @@ class PlaneacionViews(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         self.diagnostico = get_object_or_404(DiagnosticoEmpresa,
                                              id=self.kwargs['id_diagnostico'])
-        print(self.diagnostico.id_planeacion,'planeacion')
-        print(self.diagnostico.id,'diagnostico')
+        print(self.diagnostico.id_planeacion, 'planeacion')
+        print(self.diagnostico.id, 'diagnostico')
         if self.diagnostico.id_planeacion is not None:
             return redirect('mincit:editar_planeacion',
                             id_planeacion=self.diagnostico.id_planeacion.id)
@@ -282,7 +287,6 @@ class PlaneacionCreateViews(LoginRequiredMixin, CreateView):
                                         id=self.kwargs['id_diagnostico'])
         context['id_diag'] = diagnostico.id
         return context
-
 
     def get_success_url(self):
         diagnostico = DiagnosticoEmpresa.objects.get(
@@ -313,7 +317,7 @@ class PlaneacionUpdateViews(LoginRequiredMixin, UpdateView):
         context = super(PlaneacionUpdateViews, self).get_context_data(
             **kwargs)
         planeacion = get_object_or_404(Planeacion,
-                                        id=self.kwargs['id_planeacion'])
+                                       id=self.kwargs['id_planeacion'])
         diagnostico = DiagnosticoEmpresa.objects.get(id_planeacion=planeacion)
         context['id_diag'] = diagnostico.id
         return context
@@ -322,7 +326,8 @@ class PlaneacionUpdateViews(LoginRequiredMixin, UpdateView):
         try:
             planeacion = Planeacion.objects.get(
                 id=self.kwargs['id_planeacion'])
-            diagnostico=DiagnosticoEmpresa.objects.get(id_planeacion=planeacion)
+            diagnostico = DiagnosticoEmpresa.objects.get(
+                id_planeacion=planeacion)
             url_reverse = "mincit:organizacion"
         except DiagnosticoEmpresa.DoesNotExist:
             url_reverse = 'mincit:planeacion'
@@ -342,7 +347,7 @@ class OrganizacionViews(LoginRequiredMixin, View):
                                              id=self.kwargs['id_diagnostico'])
 
         if self.diagnostico.id_organizacion is not None:
-                return redirect('mincit:editar_organizacion',
+            return redirect('mincit:editar_organizacion',
                             self.diagnostico.id_organizacion.id)
 
         return redirect('mincit:crear_organizacion', self.diagnostico.id)
@@ -395,8 +400,9 @@ class OrganizacionUpdateViews(LoginRequiredMixin, UpdateView):
         context = super(OrganizacionUpdateViews, self).get_context_data(
             **kwargs)
         organizacion = get_object_or_404(Organizacion,
-                                        id=self.kwargs['id_organizacion'])
-        diagnostico = DiagnosticoEmpresa.objects.get(id_organizacion=organizacion)
+                                         id=self.kwargs['id_organizacion'])
+        diagnostico = DiagnosticoEmpresa.objects.get(
+            id_organizacion=organizacion)
 
         context['id_diag'] = diagnostico.id
         return context
@@ -405,12 +411,14 @@ class OrganizacionUpdateViews(LoginRequiredMixin, UpdateView):
         try:
             organizacion = Organizacion.objects.get(
                 id=self.kwargs['id_organizacion'])
-            diagnostico = DiagnosticoEmpresa.objects.get(id_organizacion=organizacion)
+            diagnostico = DiagnosticoEmpresa.objects.get(
+                id_organizacion=organizacion)
             url_reverse = "mincit:direccion"
         except DiagnosticoEmpresa.DoesNotExist:
             url_reverse = 'mincit:organizacion'
         return reverse(
             url_reverse, kwargs={'id_diagnostico': diagnostico.id})
+
 
 class DireccionViews(LoginRequiredMixin, View):
     form = DireccionForm
@@ -428,6 +436,7 @@ class DireccionViews(LoginRequiredMixin, View):
             return redirect('mincit:editar_direccion',
                             self.diagnostico.id_direccion.id)
         return redirect('mincit:crear_direccion', self.diagnostico.id)
+
 
 class DireccionCreateViews(LoginRequiredMixin, CreateView):
     model = Direccion
@@ -482,7 +491,8 @@ class DireccionUpdateViews(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         try:
-            direccion = Direccion.objects.get(id=self.kwargs['id_direccion'])
+            direccion = Direccion.objects.get(
+                id=self.kwargs['id_direccion'])
             diagnostico = DiagnosticoEmpresa.objects.get(id_direccion=direccion)
             url_reverse = "mincit:control"
         except DiagnosticoEmpresa.DoesNotExist:
@@ -491,8 +501,81 @@ class DireccionUpdateViews(LoginRequiredMixin, UpdateView):
             url_reverse, kwargs={'id_diagnostico': diagnostico.id})
 
 
+class ControlViews(LoginRequiredMixin, View):
+    form = ControlForm
+    model = Control
+    login_url = 'mincit:login'
+    messages = None
+    template = 'diagnostico_emp/control.html'
+
+    def get(self, request, *args, **kwargs):
+        self.diagnostico = get_object_or_404(DiagnosticoEmpresa,
+                                             id=self.kwargs['id_diagnostico'])
+
+        if self.diagnostico.id_control is not None:
+            return redirect('mincit:editar_cpntrol',
+                            self.diagnostico.id_control.id)
+        return redirect('mincit:crear_control', self.diagnostico.id)
 
 
+class ControlCreateViews(LoginRequiredMixin, CreateView):
+    model = Control
+    form_class = ControlForm
+    template_name = 'diagnostico_emp/control_crear.html'
+    messages = None
+    context = {
+        'form': form_class
+    }
+    success_url = None
+
+    def get_context_data(self, **kwargs):
+        context = super(ControlCreateViews, self).get_context_data(
+            **kwargs)
+        diagnostico = get_object_or_404(DiagnosticoEmpresa,
+                                        id=self.kwargs['id_diagnostico'])
+        context['id_diag'] = diagnostico.id
+        return context
+
+    def get_success_url(self):
+        diagnostico = DiagnosticoEmpresa.objects.get(
+            id=self.kwargs['id_diagnostico'])
+        url_reverse = "mincit:recursos"
+        try:
+            diagnostico.id_control = self.object
+            diagnostico.save()
+        except DiagnosticoEmpresa.DoesNotExist:
+            url_reverse = 'mincit:control'
+        return reverse(
+            url_reverse, kwargs={'id_diagnostico': diagnostico.id})
 
 
+class ControlUpdateViews(LoginRequiredMixin, UpdateView):
+    model = Control
+    form_class = ControlForm
+    template_name = 'diagnostico_emp/control_editar.html'
+    success_url = None
+    slug_field = 'id'
+    slug_url_kwarg = 'id_direccion'
+    messages = None
+    context = {
+        'form': form_class
+    }
 
+    def get_context_data(self, **kwargs):
+        context = super(ControlUpdateViews, self).get_context_data(
+            **kwargs)
+        control = get_object_or_404(Control, id=self.kwargs['id_control'])
+        diagnostico = DiagnosticoEmpresa.objects.get(id_control=control)
+        context['id_diag'] = diagnostico.id
+        return context
+
+    def get_success_url(self):
+        try:
+            control = Control.objects.get(
+                id=self.kwargs['id_control'])
+            diagnostico = DiagnosticoEmpresa.objects.get(id_control=control)
+            url_reverse = "mincit:recursos"
+        except DiagnosticoEmpresa.DoesNotExist:
+            url_reverse = 'mincit:control'
+        return reverse(
+            url_reverse, kwargs={'id_diagnostico': diagnostico.id})

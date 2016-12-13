@@ -62,4 +62,13 @@ urlpatterns = [
     url(r'^diagnostico_emp/direccion/editar/(?P<id_organizacion>\d+)/$',
         views.DireccionUpdateViews.as_view(),
         name='editar_direccion'),
+    url(r'^diagnostico_emp/control/(?P<id_diagnostico>\d+)/$',
+        views.ControlViews.as_view(),
+        name='control'),
+    url(r'^diagnostico_emp/control/crear/(?P<id_diagnostico>\d+)/$',
+        views.ControlCreateViews.as_view(),
+        name='crear_control'),
+    url(r'^diagnostico_emp/control/editar/(?P<id_control>\d+)/$',
+        views.ControlUpdateViews.as_view(),
+        name='editar_control'),
 ]
