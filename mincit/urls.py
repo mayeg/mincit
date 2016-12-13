@@ -59,7 +59,7 @@ urlpatterns = [
     url(r'^diagnostico_emp/direccion/crear/(?P<id_diagnostico>\d+)/$',
         views.DireccionCreateViews.as_view(),
         name='crear_direccion'),
-    url(r'^diagnostico_emp/direccion/editar/(?P<id_organizacion>\d+)/$',
+    url(r'^diagnostico_emp/direccion/editar/(?P<id_direccion>\d+)/$',
         views.DireccionUpdateViews.as_view(),
         name='editar_direccion'),
     url(r'^diagnostico_emp/control/(?P<id_diagnostico>\d+)/$',
