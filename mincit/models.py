@@ -225,6 +225,7 @@ class Control(models.Model):
 
 
 class Recurso(models.Model):
+
     CONTRATA_DIRECTAMENTE_CHOICE = (
         ('si', 'Si'),
         ('no', 'No'),
@@ -234,16 +235,19 @@ class Recurso(models.Model):
         ('mas o menos', 'Mas o Menos'),
         ('no', 'No'),
     )
+
     PROCESOS_SELECCION_CHOICE = (
         ('si', 'Si'),
         ('mas o menos', 'Mas o Menos'),
         ('no', 'No'),
     )
+
     ESTABLECE_RECOMPENSA_CHOICE = (
         ('si', 'Si'),
         ('mas o menos', 'Mas o Menos'),
         ('no', 'No'),
     )
+
     EMPLEADOS_SUFICIENTES_CHOICE = (
         ('si', 'Si'),
         ('mas o menos', 'Mas o Menos'),
@@ -256,10 +260,12 @@ class Recurso(models.Model):
                                              default='No seleccion')
     procesos_seleccion = models.CharField(max_length=20, choices=PROCESOS_SELECCION_CHOICE,
                                           default='No seleccion')
-    establece_recompensa = models.CharField(max_length=20, choices=ESTABLECE_RECOMPENSA_CHOICE,
-                                          default='No seleccion')
+    establece_recompensa = models.CharField(max_length=20,
+                                            choices=ESTABLECE_RECOMPENSA_CHOICE,
+                                            default='No seleccion')
     numero_empleados = models.IntegerField()
-    empleados_suficientes = models.CharField(max_length=20, choices=EMPLEADOS_SUFICIENTES_CHOICE,
+    empleados_suficientes = models.CharField(max_length=20,
+                                             choices=EMPLEADOS_SUFICIENTES_CHOICE,
                                              default='No seleccion')
 
 

@@ -217,6 +217,7 @@ class ControlForm(forms.ModelForm):
             'monitoreo_indicadores': forms.RadioSelect(),
         }
 
+
 class RecursoForm(forms.ModelForm):
     class Meta:
         model = Recurso
