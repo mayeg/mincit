@@ -71,4 +71,13 @@ urlpatterns = [
     url(r'^diagnostico_emp/control/editar/(?P<id_control>\d+)/$',
         views.ControlUpdateViews.as_view(),
         name='editar_control'),
+    url(r'^diagnostico_emp/recursos/(?P<id_diagnostico>\d+)/$',
+        views.RecursolViews.as_view(),
+        name='recursos'),
+    url(r'^diagnostico_emp/recursos/crear/(?P<id_diagnostico>\d+)/$',
+        views.RecursoCreateViews.as_view(),
+        name='crear_recursos'),
+    url(r'^diagnostico_emp/recursos/editar/(?P<id_recurso>\d+)/$',
+        views.RecursoUpdateViews.as_view(),
+        name='editar_recursos'),
 ]

@@ -3,7 +3,7 @@
 from django import forms
 from django.utils.safestring import mark_safe
 from mincit.models import Informacion, Situacion, Planeacion, DiagnosticoEmpresa, \
-    Organizacion, Direccion, Control
+    Organizacion, Direccion, Control, Recurso
 
 
 class HorizontalRadioRenderer(forms.RadioSelect.renderer):
@@ -199,6 +199,7 @@ class DireccionForm(forms.ModelForm):
             'define_acciones': forms.RadioSelect(),
         }
 
+
 class ControlForm(forms.ModelForm):
     class Meta:
         model = Control
@@ -209,12 +210,32 @@ class ControlForm(forms.ModelForm):
             'uso_indicadores',
             'monitoreo_indicadores',
         ]
-
         widgets = {
             'sistema_control': forms.RadioSelect(),
             'compara_planeado': forms.RadioSelect(),
             'uso_indicadores': forms.RadioSelect(),
             'monitoreo_indicadores': forms.RadioSelect(),
+        }
+
+class RecursoForm(forms.ModelForm):
+    class Meta:
+        model = Recurso
+
+        fields = [
+            'contrata_directamente',
+            'comibina_contratacion',
+            'procesos_seleccion',
+            'numero_empleados',
+            'establece_recompensa'
+            'empleados_suficientes',
+        ]
+        widgets = {
+            'contrata_directamente': forms.RadioSelect(),
+            'comibina_contratacion': forms.RadioSelect(),
+            'procesos_seleccion': forms.RadioSelect(),
+            'establece_recompensa': forms.RadioSelect(),
+            'numero_empleados': forms.IntegerField(),
+            'empleados_suficientes': forms.RadioSelect(),
         }
 
 
