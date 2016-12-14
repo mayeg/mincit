@@ -629,7 +629,7 @@ class RecursoCreateViews(LoginRequiredMixin, CreateView):
 class RecursoUpdateViews(LoginRequiredMixin, UpdateView):
     model = Recurso
     form_class = RecursoForm
-    template_name = 'diagnostico_emp/recurso_editar.html'
+    template_name = 'diagnostico_emp/recursos_editar.html'
     success_url = None
     slug_field = 'id'
     slug_url_kwarg = 'id_recurso'
