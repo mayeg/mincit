@@ -651,7 +651,7 @@ class RecursoUpdateViews(LoginRequiredMixin, UpdateView):
             recurso = Recurso.objects.get(
                 id=self.kwargs['id_recurso'])
             diagnostico = DiagnosticoEmpresa.objects.get(id_recrusos=recurso)
-            url_reverse = "mincit:mercadeo"
+            url_reverse = "mincit:financiera"
         except DiagnosticoEmpresa.DoesNotExist:
             url_reverse = 'mincit:recursos'
         return reverse(
