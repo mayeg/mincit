@@ -235,7 +235,7 @@ class RecursoForm(forms.ModelForm):
             'comibina_contratacion': forms.RadioSelect(),
             'procesos_seleccion': forms.RadioSelect(),
             'establece_recompensa': forms.RadioSelect(),
-            'numero_empleados': forms.IntegerField(),
+            'numero_empleados': forms.NumberInput(),
             'empleados_suficientes': forms.RadioSelect(),
         }
 
