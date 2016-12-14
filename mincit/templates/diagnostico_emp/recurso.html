@@ -12,8 +12,8 @@
     <li>
         <a href="{% url 'mincit:direccion' id_diagnostico=id_diag %}">Direccion</a>
     </li>
-    <li class="active"><a href="#">Control</a></li>
-    <li><a href="#">Recursos</a></li>
+    <li><a href="{% url 'mincit:control' id_diagnostico=id_diag %}">Control</a></li>
+    <li class="active"><a href="#">Recursos</a></li>
     <li><a href="#">Mercadeo</a></li>
     <li><a href="#">Financiera</a></li>
     <li><a href="#">Produccion</a></li>
@@ -34,11 +34,6 @@
         <label class="col-sm-2 control-label">La empresa contrata directamente
             al personal:</label>
         <div class="col-sm-4">
-            '',
-            '',
-            '',
-            '',
-            '',
             {{form.contrata_directamente}}
         </div>
     </div>

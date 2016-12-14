@@ -15,8 +15,8 @@ from django.views.generic.edit import UpdateView
 from django.views.generic.list import ListView
 from mincit.forms import LoginForm, InformacionForm, SituacionForm, \
     PlaneacionForm, DiagnosticoEmpresaForm, \
-    OrganizacionForm, DireccionForm, ControlForm, RecursoForm
-from mincit.models import Control, Recurso
+    OrganizacionForm, DireccionForm, ControlForm, RecursoForm, FinancieraForm
+from mincit.models import Control, Recurso, Financiera
 from models import Empresa, Informacion, DiagnosticoEmpresa, Situacion, \
     Planeacion, Direccion, Organizacion
 from datetime import datetime
@@ -578,7 +578,7 @@ class ControlUpdateViews(LoginRequiredMixin, UpdateView):
             url_reverse, kwargs={'id_diagnostico': diagnostico.id})
 
 
-class RecursolViews(LoginRequiredMixin, View):
+class RecursoViews(LoginRequiredMixin, View):
     form = RecursoForm
     model = Recurso
     login_url = 'mincit:login'
@@ -616,7 +616,7 @@ class RecursoCreateViews(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         diagnostico = DiagnosticoEmpresa.objects.get(
             id=self.kwargs['id_diagnostico'])
-        url_reverse = "mincit:mercadeo"
+        url_reverse = "mincit:financiera"
         try:
             diagnostico.id_recursos = self.object
             diagnostico.save()
@@ -654,6 +654,85 @@ class RecursoUpdateViews(LoginRequiredMixin, UpdateView):
             url_reverse = "mincit:mercadeo"
         except DiagnosticoEmpresa.DoesNotExist:
             url_reverse = 'mincit:recursos'
+        return reverse(
+            url_reverse, kwargs={'id_diagnostico': diagnostico.id})
+
+class FinancieraViews(LoginRequiredMixin, View):
+    form = FinancieraForm
+    model = Financiera
+    login_url = 'mincit:login'
+    messages = None
+    template = 'diagnostico_emp/financiera.html'
+
+    def get(self, request, *args, **kwargs):
+        self.diagnostico = get_object_or_404(DiagnosticoEmpresa,
+                                             id=self.kwargs['id_diagnostico'])
+
+        if self.diagnostico.id_financiera is not None:
+            return redirect('mincit:editar_financiera',
+                            self.diagnostico.id_financiera.id)
+        return redirect('mincit:crear_financiera', self.diagnostico.id)
+
+
+class FinancieraCreateViews(LoginRequiredMixin, CreateView):
+    model = Financiera
+    form_class = FinancieraForm
+    template_name = 'diagnostico_emp/financiera_crear.html'
+    messages = None
+    context = {
+        'form': form_class
+    }
+    success_url = None
+
+    def get_context_data(self, **kwargs):
+        context = super(FinancieraCreateViews, self).get_context_data(
+            **kwargs)
+        diagnostico = get_object_or_404(DiagnosticoEmpresa,
+                                        id=self.kwargs['id_diagnostico'])
+        context['id_diag'] = diagnostico.id
+        return context
+
+    def get_success_url(self):
+        diagnostico = DiagnosticoEmpresa.objects.get(
+            id=self.kwargs['id_diagnostico'])
+        url_reverse = "mincit:produccion"
+        try:
+            diagnostico.id_financiera = self.object
+            diagnostico.save()
+        except DiagnosticoEmpresa.DoesNotExist:
+            url_reverse = 'mincit:financiera'
+        return reverse(
+            url_reverse, kwargs={'id_diagnostico': diagnostico.id})
+
+
+class FinancieraUpdateViews(LoginRequiredMixin, UpdateView):
+    model = Financiera
+    form_class = FinancieraForm
+    template_name = 'diagnostico_emp/financiera_editar.html'
+    success_url = None
+    slug_field = 'id'
+    slug_url_kwarg = 'id_financiera'
+    messages = None
+    context = {
+        'form': form_class
+    }
+
+    def get_context_data(self, **kwargs):
+        context = super(FinancieraUpdateViews, self).get_context_data(
+            **kwargs)
+        financiera = get_object_or_404(Recurso, id=self.kwargs['id_financiera'])
+        diagnostico = DiagnosticoEmpresa.objects.get(id_financiera=financiera)
+        context['id_diag'] = diagnostico.id
+        return context
+
+    def get_success_url(self):
+        try:
+            financiera = Financiera.objects.get(
+                id=self.kwargs['id_financiera'])
+            diagnostico = DiagnosticoEmpresa.objects.get(id_financiera=financiera)
+            url_reverse = "mincit:produccion"
+        except DiagnosticoEmpresa.DoesNotExist:
+            url_reverse = 'mincit:financiera'
         return reverse(
             url_reverse, kwargs={'id_diagnostico': diagnostico.id})
 

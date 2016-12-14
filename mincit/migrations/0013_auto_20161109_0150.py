@@ -6,7 +6,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('mincit', '0012_auto_20161106_1235'),
     ]
@@ -17,49 +16,56 @@ class Migration(migrations.Migration):
             old_name='objetivos_largo_p',
             new_name='objetivos_largo_plazo',
         ),
-        migrations.AddField(
-            model_name='situacion',
-            name='obstaculos',
-            field=models.TextField(default=''),
-        ),
         migrations.AlterField(
             model_name='situacion',
             name='establece_valores',
-            field=models.CharField(choices=[('1', 'Si'), ('0', 'No')], default='No seleccion', max_length=1),
+            field=models.CharField(choices=[('1', 'Si'), ('0', 'No')],
+                                   default='No seleccion', max_length=20),
         ),
         migrations.AlterField(
             model_name='situacion',
             name='estrategias',
-            field=models.CharField(choices=[('1', 'Si'), ('0', 'No')], default='No seleccion', max_length=1),
+            field=models.CharField(choices=[('1', 'Si'), ('0', 'No')],
+                                   default='No seleccion', max_length=20),
         ),
         migrations.AlterField(
             model_name='situacion',
             name='mision',
-            field=models.CharField(choices=[('1', 'Si'), ('0', 'No')], default='No seleccion', max_length=1),
+            field=models.CharField(choices=[('1', 'Si'), ('0', 'No')],
+                                   default='No seleccion', max_length=20),
         ),
         migrations.AlterField(
             model_name='situacion',
             name='objetivos',
-            field=models.CharField(choices=[('1', 'Si'), ('0', 'No')], default='No seleccion', max_length=1),
+            field=models.CharField(choices=[('1', 'Si'), ('0', 'No')],
+                                   default='No seleccion', max_length=20),
         ),
         migrations.AlterField(
             model_name='situacion',
             name='plan_accion',
-            field=models.CharField(choices=[('1', 'Si'), ('0', 'No')], default='No seleccion', max_length=1),
+            field=models.CharField(choices=[('1', 'Si'), ('0', 'No')],
+                                   default='No seleccion', max_length=20),
         ),
         migrations.AlterField(
             model_name='situacion',
             name='planes_largo_p',
-            field=models.CharField(choices=[('1', 'Si'), ('0', 'No')], default='No seleccion', max_length=250),
+            field=models.CharField(choices=[('1', 'Si'), ('0', 'No')],
+                                   default='No seleccion', max_length=250),
         ),
         migrations.AlterField(
             model_name='situacion',
             name='sector',
-            field=models.CharField(choices=[('Agricola/Agroindustrial', 'Agricola/agroindustrial'), ('Sector servicios', 'Sector servicios '), ('Manufactura', 'Manufactura'), ('Comercio', 'comercio')], default='No seleccion', max_length=150),
+            field=models.CharField(
+                choices=[('Agricola/Agroindustrial', 'Agricola/agroindustrial'),
+                         ('Sector servicios', 'Sector servicios '),
+                         ('Manufactura', 'Manufactura'),
+                         ('Comercio', 'comercio')], default='No seleccion',
+                max_length=150),
         ),
         migrations.AlterField(
             model_name='situacion',
             name='vision',
-            field=models.CharField(choices=[('1', 'Si'), ('0', 'No')], default='No seleccion', max_length=1),
+            field=models.CharField(choices=[('1', 'Si'), ('0', 'No')],
+                                   default='No seleccion', max_length=20),
         ),
     ]

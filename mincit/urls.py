@@ -72,7 +72,7 @@ urlpatterns = [
         views.ControlUpdateViews.as_view(),
         name='editar_control'),
     url(r'^diagnostico_emp/recursos/(?P<id_diagnostico>\d+)/$',
-        views.RecursolViews.as_view(),
+        views.RecursoViews.as_view(),
         name='recursos'),
     url(r'^diagnostico_emp/recursos/crear/(?P<id_diagnostico>\d+)/$',
         views.RecursoCreateViews.as_view(),
@@ -80,4 +80,17 @@ urlpatterns = [
     url(r'^diagnostico_emp/recursos/editar/(?P<id_recurso>\d+)/$',
         views.RecursoUpdateViews.as_view(),
         name='editar_recursos'),
+
+    #--------FALTA MERCADEO----------
+
+    url(r'^diagnostico_emp/financiera/(?P<id_diagnostico>\d+)/$',
+        views.FinancieraViews.as_view(),
+        name='financiera'),
+    url(r'^diagnostico_emp/financiera/crear/(?P<id_diagnostico>\d+)/$',
+        views.FinancieraCreateViews.as_view(),
+        name='crear_financiera'),
+    url(r'^diagnostico_emp/financiera/editar/(?P<id_financiera>\d+)/$',
+        views.FinancieraUpdateViews.as_view(),
+        name='editar_financiera'),
+
 ]

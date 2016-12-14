@@ -17,14 +17,4 @@ class Migration(migrations.Migration):
             name='numero_consecutivo',
             field=models.CharField(max_length=50),
         ),
-        migrations.AlterField(
-            model_name='situacion',
-            name='establece_valores',
-            field=models.CharField(choices=[('1', 'Si'), ('0', 'No')], max_length=20),
-        ),
-        migrations.AlterField(
-            model_name='situacion',
-            name='obstaculos',
-            field=models.TextField(),
-        ),
     ]

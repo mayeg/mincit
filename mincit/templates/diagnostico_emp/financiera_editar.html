@@ -1,0 +1,127 @@
+{% extends "plantilla/inicio.html" %}
+{% block title %} DIAGNOSTICO_EMP {% endblock %}
+{% block contenido %}
+<ul class="nav nav-tabs nav-justified">
+    <li>
+        <a href="{% url 'mincit:situacion' id_diagnostico=id_diag %}">Situacion</a>
+    </li>
+    <li><a href="{% url 'mincit:planeacion' id_diagnostico=id_diag %}">Planeacion</a>
+    </li>
+    <li><a href="{% url 'mincit:organizacion' id_diagnostico=id_diag %}">Organizacion</a>
+    </li>
+    <li>
+        <a href="{% url 'mincit:direccion' id_diagnostico=id_diag %}">Direccion</a>
+    </li>
+    <li><a href="{% url 'mincit:control' id_diagnostico=id_diag %}">Control</a></li>
+    <li><a href="{% url 'mincit:recursos' id_diagnostico=id_diag %}">Recursos</a></li>
+    <li><a href="#">Mercadeo</a></li>
+    <li class="active"><a href="#">Financiera</a></li>
+    <li><a href="#">Produccion</a></li>
+    <li><a href="#">Internacionalizacion</a></li>
+    <li><a href="#">Aspectos</a></li>
+    <li><a href="#">Resumen</a></li>
+</ul>
+<div class="row">
+    <h1 class="text-center text-success">
+        <p>
+            FINANCIERA
+        </p>
+    </h1>
+</div>
+<form class="form-horizontal col-xs-12" action="" method="post">
+    {% csrf_token %}
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">La empresa tiene implementado un sistema de contabilidad:</label>
+        <div class="col-sm-4">
+            {{form.sistema_contabilidad}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">La empresa tiene la contabilidad al día y se revisa cada mes:</label>
+        <div class="col-sm-4">
+            {{form.contabilidad_al_dia}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">La empresa aplica las Normas internacionales de Contabilidad-NIIF:</label>
+        <div class="col-sm-4">
+            {{form.normas_contabilidad}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">Cuánto ha facturado tu empresa en el último año:</label>
+        <div class="col-sm-4">
+            {{form.facturado_ultimo}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">La empresa tiene planificación financiera formal:</label>
+        <div class="col-sm-4">
+            {{form.planificacion_financiera}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">La empresa conoce el margen de rentabilidad:</label>
+        <div class="col-sm-4">
+            {{form.margen_rentabilidad}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">El margen de rentabilidad es positivo:</label>
+        <div class="col-sm-4">
+            {{form.rentabilidad_positivo}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">El nivel de endeudamiento de la empresa con respecto a los activos es:</label>
+        <div class="col-sm-4">
+            {{form.nivel_endeudamiento}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">Los ingresos permiten cumplir con las obligaciones oportunamente:</label>
+        <div class="col-sm-4">
+            {{form.ingresos_cumplen}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">La empresa cuenta con suficiente capital de trabajo:</label>
+        <div class="col-sm-4">
+            {{form.suficiente_capital}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">El flujo de caja (liquidez) es positivo:</label>
+        <div class="col-sm-4">
+            {{form.flujo_caja}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">La empresa conoce cuál es el costo de su producto/servicio:</label>
+        <div class="col-sm-4">
+            {{form.costo_producto_servicio}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">La empresa establece presupuestos y no gasta más de lo presupuestado en cada proyecto:</label>
+        <div class="col-sm-4">
+            {{form.presupuesto}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">Se toman decisiones con base al análisis de los estados financieros:</label>
+        <div class="col-sm-4">
+            {{form.toma_decisiones}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4 col-xs-offset-4">
+            <button type="submit"
+                    class="btn btn-success btn-block btn-flat"> Guardar y
+                Enviar
+            </button>
+        </div><!-- /.col -->
+    </div>
+
+</form>
+{% endblock %}

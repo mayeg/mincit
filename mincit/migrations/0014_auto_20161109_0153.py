@@ -14,11 +14,6 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterField(
             model_name='situacion',
-            name='establece_valores',
-            field=models.CharField(choices=[('1', 'Si'), ('0', 'No')], default='No seleccion', max_length=20),
-        ),
-        migrations.AlterField(
-            model_name='situacion',
             name='estrategias',
             field=models.CharField(choices=[('1', 'Si'), ('0', 'No')], default='No seleccion', max_length=20),
         ),

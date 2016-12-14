@@ -14,10 +14,11 @@ class Informacion(models.Model):
         ('otro', 'Otro'),
     )
     id_empresa = models.OneToOneField(Empresa, null=True, blank=True,
-                                          on_delete=models.CASCADE)
+                                      on_delete=models.CASCADE)
     razon_social = models.CharField(max_length=250)
     nombre_contacto = models.CharField(max_length=50)
-    posicion_empresa = models.CharField(max_length=50, choices=POSICION_EMPRESA_CHOICE,
+    posicion_empresa = models.CharField(max_length=50,
+                                        choices=POSICION_EMPRESA_CHOICE,
                                         default='No seleccion')
     numero_tel = models.IntegerField()
     telfono_movil = models.IntegerField()
@@ -26,7 +27,6 @@ class Informacion(models.Model):
 
 
 class Situacion(models.Model):
-
     SECTOR_EMPRESA_CHOICE = (
         ('Agricola/Agroindustrial', 'Agricola/agroindustrial'),
         ('Sector servicios', 'Sector servicios '),
@@ -63,20 +63,27 @@ class Situacion(models.Model):
     )
     sector = models.CharField(max_length=150, choices=SECTOR_EMPRESA_CHOICE,
                               default='No seleccion')
-    planes_largo_p = models.CharField(max_length=250, choices=PLANES_EMPRESA_CHOICE,
+    planes_largo_p = models.CharField(max_length=250,
+                                      choices=PLANES_EMPRESA_CHOICE,
                                       default='No seleccion')
-    mision = models.CharField(max_length=20, choices=MISION_CHOICE, default='No seleccion')
-    vision = models.CharField(max_length=20, choices=VISION_CHOICE, default='No seleccion')
-    objetivos = models.CharField(max_length=20, choices=OBJETIVOS_CHOICE, default='No seleccion')
-    estrategias = models.CharField(max_length=20, choices=ESTRATEGIAS_CHOICE, default='No seleccion')
-    plan_accion = models.CharField(max_length=20, choices=PLAN_ACCION_CHOICE, default='No seleccion')
-    establece_valores = models.CharField(max_length=20, choices=VALORES_EMPRESA_CHOICE,
+    mision = models.CharField(max_length=20, choices=MISION_CHOICE,
+                              default='No seleccion')
+    vision = models.CharField(max_length=20, choices=VISION_CHOICE,
+                              default='No seleccion')
+    objetivos = models.CharField(max_length=20, choices=OBJETIVOS_CHOICE,
+                                 default='No seleccion')
+    estrategias = models.CharField(max_length=20, choices=ESTRATEGIAS_CHOICE,
+                                   default='No seleccion')
+    plan_accion = models.CharField(max_length=20, choices=PLAN_ACCION_CHOICE,
+                                   default='No seleccion')
+    establece_valores = models.CharField(max_length=20,
+                                         choices=VALORES_EMPRESA_CHOICE,
                                          default='No seleccion')
     objetivos_largo_plazo = models.TextField()
     recursos = models.TextField()
     debilidades = models.TextField()
     oportunidades = models.TextField()
-    obstaculos = models.TextField()
+    obstaculos = models.TextField(default="")
     ventaja_empresa = models.TextField()
     ventaja_competencia = models.TextField()
 
@@ -106,15 +113,20 @@ class Planeacion(models.Model):
         ('1', 'Si'),
         ('0', 'No'),
     )
-    elabora_planes = models.CharField(max_length=50, choices=ELABORA_PLANES_CHOICE,
+    elabora_planes = models.CharField(max_length=50,
+                                      choices=ELABORA_PLANES_CHOICE,
                                       default='No seleccion')
-    tiempo_planeacion = models.CharField(max_length=50, choices=TIEMPO_PLANEACION_CHOICE,
+    tiempo_planeacion = models.CharField(max_length=50,
+                                         choices=TIEMPO_PLANEACION_CHOICE,
                                          default='No seleccion')
-    participacion_empleados = models.CharField(max_length=1, choices=PARTICIPACION_EMPLEADOS_CHOICE,
+    participacion_empleados = models.CharField(max_length=1,
+                                               choices=PARTICIPACION_EMPLEADOS_CHOICE,
                                                default='No seleccion')
-    conocen_objetivos = models.CharField(max_length=1, choices=CONOCEN_OBJETIVOS_CHOICE,
+    conocen_objetivos = models.CharField(max_length=1,
+                                         choices=CONOCEN_OBJETIVOS_CHOICE,
                                          default='No seleccion')
-    estartegias_plan_accion = models.CharField(max_length=1, choices=ESTRATEGIAS_PLAN_ACCION_CHOICE,
+    estartegias_plan_accion = models.CharField(max_length=1,
+                                               choices=ESTRATEGIAS_PLAN_ACCION_CHOICE,
                                                default='No seleccion')
 
 
@@ -141,11 +153,14 @@ class Organizacion(models.Model):
     )
     organigrama = models.CharField(max_length=29, choices=ORGANIGRAMA_CHOICE,
                                    default='No seleccion')
-    procesos_documentados = models.CharField(max_length=20, choices=PROCESOS_DOCUMENTADOS_CHOICE,
+    procesos_documentados = models.CharField(max_length=20,
+                                             choices=PROCESOS_DOCUMENTADOS_CHOICE,
                                              default='No seleccion')
-    evalua_procesos = models.CharField(max_length=20, choices=EVALUA_PROCESOS_CHOICE,
+    evalua_procesos = models.CharField(max_length=20,
+                                       choices=EVALUA_PROCESOS_CHOICE,
                                        default='No seleccion')
-    automatiza_procesos = models.CharField(max_length=20, choices=AUTOMATIZA_PROCESOS_CHOICE,
+    automatiza_procesos = models.CharField(max_length=20,
+                                           choices=AUTOMATIZA_PROCESOS_CHOICE,
                                            default='No seleccion')
 
 
@@ -179,17 +194,23 @@ class Direccion(models.Model):
         ('mas o menos', 'Mas o Menos'),
         ('no', 'No'),
     )
-    maximo_compromiso = models.CharField(max_length=20, choices=MAXIMO_COMPROMISO_CHOICE,
+    maximo_compromiso = models.CharField(max_length=20,
+                                         choices=MAXIMO_COMPROMISO_CHOICE,
                                          default='No seleccion')
-    clima_laboral = models.CharField(max_length=20, choices=CLIMA_LABORAL_CHOICE,
+    clima_laboral = models.CharField(max_length=20,
+                                     choices=CLIMA_LABORAL_CHOICE,
                                      default='No seleccion')
-    motivacion_empleados = models.CharField(max_length=20, choices=MOTIVACION_EMPLEADOS_CHOICE,
+    motivacion_empleados = models.CharField(max_length=20,
+                                            choices=MOTIVACION_EMPLEADOS_CHOICE,
                                             default='No seleccion')
-    decisiones_unilaterales = models.CharField(max_length=20, choices=DECISIONES_UNILATERALES_CHOICE,
+    decisiones_unilaterales = models.CharField(max_length=20,
+                                               choices=DECISIONES_UNILATERALES_CHOICE,
                                                default='No seleccion')
-    decisiones_consenso = models.CharField(max_length=20, choices=DECISIONES_CONSENSO_CHOICE,
+    decisiones_consenso = models.CharField(max_length=20,
+                                           choices=DECISIONES_CONSENSO_CHOICE,
                                            default='No seleccion')
-    define_acciones = models.CharField(max_length=20, choices=DEFINE_ACCIONES_CHOICE,
+    define_acciones = models.CharField(max_length=20,
+                                       choices=DEFINE_ACCIONES_CHOICE,
                                        default='No seleccion')
 
 
@@ -214,22 +235,26 @@ class Control(models.Model):
         ('mas o menos', 'Mas o Menos'),
         ('no', 'No'),
     )
-    sistema_control = models.CharField(max_length=20, choices=SISTEMA_CONTROL_CHOICE,
+    sistema_control = models.CharField(max_length=20,
+                                       choices=SISTEMA_CONTROL_CHOICE,
                                        default='No seleccion')
-    compara_planeado = models.CharField(max_length=20, choices=COMPARA_PLANEADO_CHOICE,
+    compara_planeado = models.CharField(max_length=20,
+                                        choices=COMPARA_PLANEADO_CHOICE,
                                         default='No seleccion')
-    uso_indicadores = models.CharField(max_length=20, choices=USO_INDICADORES_CHOICE,
+    uso_indicadores = models.CharField(max_length=20,
+                                       choices=USO_INDICADORES_CHOICE,
                                        default='No seleccion')
-    monitoreo_indicadores = models.CharField(max_length=20, choices=MONITOREO_INDICADORES_CHOICE,
+    monitoreo_indicadores = models.CharField(max_length=20,
+                                             choices=MONITOREO_INDICADORES_CHOICE,
                                              default='No seleccion')
 
 
 class Recurso(models.Model):
-
     CONTRATA_DIRECTAMENTE_CHOICE = (
         ('si', 'Si'),
         ('no', 'No'),
     )
+
     COMBINA_CONTRATACION_CHOICE = (
         ('si', 'Si'),
         ('mas o menos', 'Mas o Menos'),
@@ -254,11 +279,14 @@ class Recurso(models.Model):
         ('no', 'No'),
     )
 
-    contrata_directamente = models.CharField(max_length=20, choices=CONTRATA_DIRECTAMENTE_CHOICE,
+    contrata_directamente = models.CharField(max_length=20,
+                                             choices=CONTRATA_DIRECTAMENTE_CHOICE,
                                              default='No seleccion')
-    comibina_contratacion = models.CharField(max_length=20, choices=COMBINA_CONTRATACION_CHOICE,
+    comibina_contratacion = models.CharField(max_length=20,
+                                             choices=COMBINA_CONTRATACION_CHOICE,
                                              default='No seleccion')
-    procesos_seleccion = models.CharField(max_length=20, choices=PROCESOS_SELECCION_CHOICE,
+    procesos_seleccion = models.CharField(max_length=20,
+                                          choices=PROCESOS_SELECCION_CHOICE,
                                           default='No seleccion')
     establece_recompensa = models.CharField(max_length=20,
                                             choices=ESTABLECE_RECOMPENSA_CHOICE,
@@ -269,19 +297,128 @@ class Recurso(models.Model):
                                              default='No seleccion')
 
 
+class Financiera(models.Model):
+    SISTEMA_CONTABILIDAD_CHOICE = (
+        ('si', 'Si'),
+        ('no', 'No'),
+    )
+    CONTABILIDAD_AL_DIA_CHOICE = (
+        ('si', 'Si'),
+        ('mas o menos', 'Mas o Menos'),
+        ('no', 'No'),
+    )
+    NORMAS_CONTABILIDAD_CHOICE = (
+        ('si', 'Si'),
+        ('no', 'No'),
+    )
+    PLANIFICACION_FINANCIERA_CHOICE = (
+        ('si', 'Si'),
+        ('no', 'No'),
+    )
+    MARGEN_RENTABILIDAD_CHOICE = (
+        ('si', 'Si'),
+        ('no', 'No'),
+    )
+    RENTABILIDAD_POSITIVO_CHOICE = (
+        ('si', 'Si'),
+        ('no', 'No'),
+    )
+    NIVEL_ENDEUDAMIENTO_CHOICE = (
+        ('alto', 'Alto'),
+        ('medio', 'Medio'),
+        ('bajo', 'Bajo'),
+        ('no conoce', 'No lo conoce'),
+    )
+    INGRESOS_CUMPLE_CHOICE = (
+        ('si', 'Si'),
+        ('no', 'No'),
+    )
+    SUFICIENTE_CAPITAL_CHOICE = (
+        ('si', 'Si'),
+        ('no', 'No'),
+    )
+    FLUJO_CAJA_CHOICE = (
+        ('si', 'Si'),
+        ('no', 'No'),
+    )
+    COSTO_PRODUCTO_SERVICIO_CHOICE = (
+        ('si', 'Si'),
+        ('parcialmente', 'Parcialmente'),
+        ('no', 'No'),
+    )
+    PRESUPUESTO_CHOICE = (
+        ('si', 'Si'),
+        ('parcialmente', 'Parcialmente'),
+        ('no', 'No'),
+    )
+    TOMA_DECISIONES_CHOICE = (
+        ('si', 'Si'),
+        ('mas o menos', 'Mas o Menos'),
+        ('no', 'No'),
+    )
+
+    sistema_contabilidad = models.CharField(max_length=20,
+                                            choices=SISTEMA_CONTABILIDAD_CHOICE,
+                                            default='No seleccion')
+    contabilidad_al_dia = models.CharField(max_length=20,
+                                           choices=CONTABILIDAD_AL_DIA_CHOICE,
+                                           default='No seleccion')
+    normas_contabilidad = models.CharField(max_length=20,
+                                           choices=NORMAS_CONTABILIDAD_CHOICE,
+                                           default='No seleccion')
+    facturado_ultimo = models.IntegerField()
+    planificacion_financiera = models.CharField(max_length=20,
+                                                choices=PLANIFICACION_FINANCIERA_CHOICE,
+                                                default='No seleccion')
+    margen_rentabilidad = models.CharField(max_length=20,
+                                           choices=MARGEN_RENTABILIDAD_CHOICE,
+                                           default='No seleccion')
+    rentabilidad_positivo = models.CharField(max_length=20,
+                                             choices=RENTABILIDAD_POSITIVO_CHOICE,
+                                             default='No seleccion')
+    nivel_endeudamiento = models.CharField(max_length=20,
+                                           choices=NIVEL_ENDEUDAMIENTO_CHOICE,
+                                           default='No seleccion')
+    ingresos_cumplen = models.CharField(max_length=20,
+                                        choices=INGRESOS_CUMPLE_CHOICE,
+                                        default='No seleccion')
+    suficiente_capital = models.CharField(max_length=20,
+                                          choices=SUFICIENTE_CAPITAL_CHOICE,
+                                          default='No seleccion')
+    flujo_caja = models.CharField(max_length=20,
+                                  choices=FLUJO_CAJA_CHOICE,
+                                  default='No seleccion')
+    costo_producto_servicio = models.CharField(max_length=20,
+                                               choices=COSTO_PRODUCTO_SERVICIO_CHOICE,
+                                               default='No seleccion')
+    presupuesto = models.CharField(max_length=20,
+                                   choices=PRESUPUESTO_CHOICE,
+                                   default='No seleccion')
+    toma_decisiones = models.CharField(max_length=20,
+                                       choices=TOMA_DECISIONES_CHOICE,
+                                       default='No seleccion')
+
+
 class DiagnosticoEmpresa(models.Model):
     fecha = models.DateField()
     numero_consecutivo = models.CharField(max_length=50)
     asesor = models.CharField(max_length=100)
     id_empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
-    id_situacion = models.OneToOneField(Situacion, null=True, blank=True, on_delete=models.CASCADE)
-    id_planeacion = models.OneToOneField(Planeacion, null=True, blank=True, on_delete=models.CASCADE)
-    id_organizacion = models.OneToOneField(Organizacion, null=True, blank=True, on_delete=models.CASCADE)
-    id_direccion = models.OneToOneField(Direccion, null=True, blank=True, on_delete=models.CASCADE)
-    id_control = models.OneToOneField(Control, null=True, blank=True, on_delete=models.CASCADE)
-    id_recursos = models.OneToOneField(Recurso, null=True, blank=True, on_delete=models.CASCADE)
+    id_situacion = models.OneToOneField(Situacion, null=True, blank=True,
+                                        on_delete=models.CASCADE)
+    id_planeacion = models.OneToOneField(Planeacion, null=True, blank=True,
+                                         on_delete=models.CASCADE)
+    id_organizacion = models.OneToOneField(Organizacion, null=True, blank=True,
+                                           on_delete=models.CASCADE)
+    id_direccion = models.OneToOneField(Direccion, null=True, blank=True,
+                                        on_delete=models.CASCADE)
+    id_control = models.OneToOneField(Control, null=True, blank=True,
+                                      on_delete=models.CASCADE)
+    id_recursos = models.OneToOneField(Recurso, null=True, blank=True,
+                                       on_delete=models.CASCADE)
     id_mercadeo = models.IntegerField(default=0)
-    id_financiera = models.IntegerField(default=0)
+    id_financiera = models.OneToOneField(Financiera, null=True, blank=True,
+                                         on_delete=models.CASCADE)
     id_produccion = models.IntegerField(default=0)
     id_internacionalizacion = models.IntegerField(default=0)
     id_aspectos = models.IntegerField(default=0)

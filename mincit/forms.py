@@ -3,7 +3,7 @@
 from django import forms
 from django.utils.safestring import mark_safe
 from mincit.models import Informacion, Situacion, Planeacion, DiagnosticoEmpresa, \
-    Organizacion, Direccion, Control, Recurso
+    Organizacion, Direccion, Control, Recurso, Financiera
 
 
 class HorizontalRadioRenderer(forms.RadioSelect.renderer):
@@ -240,6 +240,41 @@ class RecursoForm(forms.ModelForm):
         }
 
 
+class FinancieraForm(forms.ModelForm):
+    class Meta:
+        model = Financiera
+
+        fields = [
+            'sistema_contabilidad',
+            'contabilidad_al_dia',
+            'normas_contabilidad',
+            'facturado_ultimo',
+            'planificacion_financiera',
+            'margen_rentabilidad',
+            'rentabilidad_positivo',
+            'nivel_endeudamiento',
+            'ingresos_cumplen',
+            'suficiente_capital',
+            'flujo_caja',
+            'costo_producto_servicio',
+            'presupuesto',
+            'toma_decisiones',
+        ]
+        widgets = {
+            'sistema_contabilidad': forms.RadioSelect(),
+            'contabilidad_al_dia': forms.RadioSelect(),
+            'normas_contabilidad': forms.RadioSelect(),
+            'facturado_ultimo': forms.NumberInput(),
+            'planificacion_financiera': forms.RadioSelect(),
+            'margen_rentabilidad': forms.RadioSelect(),
+            'rentabilidad_positivo': forms.RadioSelect(),
+            'nivel_endeudamiento': forms.RadioSelect(),
+            'ingresos_cumplen': forms.RadioSelect(),
+            'esuficiente_capital': forms.RadioSelect(),
+            'costo_producto_servicio': forms.RadioSelect(),
+            'presupuesto': forms.RadioSelect(),
+            'toma_decisiones': forms.RadioSelect(),
+        }
 
 
 
