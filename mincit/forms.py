@@ -226,8 +226,8 @@ class RecursoForm(forms.ModelForm):
             'contrata_directamente',
             'comibina_contratacion',
             'procesos_seleccion',
+            'establece_recompensa',
             'numero_empleados',
-            'establece_recompensa'
             'empleados_suficientes',
         ]
         widgets = {
