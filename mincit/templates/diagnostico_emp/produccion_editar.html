@@ -1,0 +1,145 @@
+{% extends "plantilla/inicio.html" %}
+{% block title %} DIAGNOSTICO_EMP {% endblock %}
+{% block contenido %}
+<ul class="nav nav-tabs nav-justified">
+    <li>
+        <a href="{% url 'mincit:situacion' id_diagnostico=id_diag %}">Situacion</a>
+    </li>
+    <li><a href="{% url 'mincit:planeacion' id_diagnostico=id_diag %}">Planeacion</a>
+    </li>
+    <li><a href="{% url 'mincit:organizacion' id_diagnostico=id_diag %}">Organizacion</a>
+    </li>
+    <li>
+        <a href="{% url 'mincit:direccion' id_diagnostico=id_diag %}">Direccion</a>
+    </li>
+    <li><a href="{% url 'mincit:control' id_diagnostico=id_diag %}">Control</a>
+    </li>
+    <li>
+        <a href="{% url 'mincit:recursos' id_diagnostico=id_diag %}">Recursos</a>
+    </li>
+    <li>
+        <a href="{% url 'mincit:mercadeo' id_diagnostico=id_diag %}">Mercadeo</a>
+    </li>
+    <li><a href="{% url 'mincit:financiera' id_diagnostico=id_diag %}">Financiera</a>
+    </li>
+    <li class="active"><a href="#">Produccion</a></li>
+    <li><a href="#">Internacionalizacion</a></li>
+    <li><a href="#">Aspectos</a></li>
+    <li><a href="#">Resumen</a></li>
+</ul>
+<div class="row">
+    <h1 class="text-center text-success">
+        <p>
+            PRODUCCION
+        </p>
+    </h1>
+</div>
+<form class="form-horizontal col-xs-12" action="" method="post">
+    {% csrf_token %}
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">Conoce el porcentaje de la
+            capacidad instalada utilizada de su empresa?
+            SI, NO, CUAL ES?:</label>
+        <div class="col-sm-4">
+
+            {{form.porcentaje_capacidad}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">Conoce las normas técnicas
+            establecidas para el sector?
+            SI, NO, CUALES?:</label>
+        <div class="col-sm-4">
+            {{form.normas_tecnicas}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">Cuál es el estado de maquinaria y
+            tecnología de su empresa frente a competitividad?:</label>
+        <div class="col-sm-4">
+            {{form.estado_maquinaria}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">La empresa programa la
+            producción:</label>
+        <div class="col-sm-4">
+            {{form.programa_produccion}}
+        </div>
+        <label class="col-sm-2 control-label">esta programación responde a la
+            demanda del mercado.:</label>
+        <div class="col-sm-4">
+            {{form.produccion_responde}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">La empresa tiene planificación
+            financiera formalEn el proceso de producción se definen planes,
+            tareas, operaciones, procedimientos y encadenamientos:</label>
+        <div class="col-sm-4">
+
+            {{form.proceso_produccion_define}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">Se controla la calidad del
+            producto/servicio:</label>
+        <div class="col-sm-4">
+            {{form.control_calidad}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">Se presentan problemas de
+            abastecimiento de materias primas/insumos:</label>
+        <div class="col-sm-4">
+            {{form.problemas_abastecimiento}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">La empresa planea la adquisición
+            de maquinaria, tecnología, materia prima, etc:</label>
+        <div class="col-sm-4">
+            {{form.planea_adquisicion}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">La empresa tiene planes de
+            contingencia para proveerse de materias primas, recursos humanos,
+            etc:</label>
+        <div class="col-sm-4">
+            {{form.planes_contingencia}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">La empresa realiza inventarios
+            periódicamente:</label>
+        <div class="col-sm-4">
+            {{form.realiza_inventarios}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">La empresa hace seguimiento a la
+            rotación de inventarios:</label>
+        <div class="col-sm-4">
+            {{form.seguimiento_inventario}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">La ubicación y organización de la
+            planta permite una eficiente distribución del trabajo:</label>
+        <div class="col-sm-4">
+            {{form.eficiencia_distribucion}}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-4 col-xs-offset-4">
+            <button type="submit"
+                    class="btn btn-success btn-block btn-flat"> Guardar y
+                Enviar
+            </button>
+        </div><!-- /.col -->
+    </div>
+
+</form>
+{% endblock %}

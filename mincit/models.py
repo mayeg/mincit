@@ -399,6 +399,198 @@ class Financiera(models.Model):
                                        default='No seleccion')
 
 
+class Produccion(models.Model):
+    ESTADO_MAQUINARIA_CHOICE = (
+        ('excelente', 'Excelente'),
+        ('muy_buena', 'Muy Buena'),
+        ('buena', 'Buena'),
+        ('regular', 'Regular'),
+        ('obsoleta', 'Obsoleta'),
+    )
+    PROGRAMA_PRODUCCION_CHOICE = (
+        ('si', 'Si'),
+        ('no', 'No'),
+    )
+    PRODCCION_RESPONDE_CHOICE = (
+        ('si', 'Si'),
+        ('no', 'No'),
+    )
+    PROCESOS_PRODUCCION_DEFINE_CHOICE = (
+        ('si', 'Si'),
+        ('mas o menos', 'Mas o Menos'),
+        ('no', 'No'),
+    )
+    CONTROL_CALIDAD_CHOICE = (
+        ('si', 'Si'),
+        ('no', 'No'),
+    )
+    ABASTECIMIENTO_CHOICE = (
+        ('si', 'Si'),
+        ('no', 'No'),
+    )
+    ADQUISISION_MAQUINARIA_CHOICE = (
+        ('si', 'Si'),
+        ('no', 'No'),
+    )
+    PLANES_CONTINGENCIA_CHOICE = (
+        ('si', 'Si'),
+        ('no', 'No'),
+    )
+    REALIZA_INVENTARIOS_CHOICE = (
+        ('si', 'Si'),
+        ('no', 'No'),
+    )
+    HACE_SEGUIMIENTO_CHOICE = (
+        ('si', 'Si'),
+        ('parcialmente', 'Parcialmente'),
+        ('no', 'No'),
+    )
+    EFICIENCIA_DISTRIBUCION_CHOICE = (
+        ('si', 'Si'),
+        ('parcialmente', 'Parcialmente'),
+        ('no', 'No'),
+    )
+    porcentaje_capacidad = models.CharField(max_length=250)
+    normas_tecnicas = models.CharField(max_length=250)
+    estado_maquinaria = models.CharField(max_length=20,
+                                         choices=ESTADO_MAQUINARIA_CHOICE,
+                                         default='No seleccion')
+    programa_produccion = models.CharField(max_length=20,
+                                           choices=PROGRAMA_PRODUCCION_CHOICE,
+                                           default='No seleccion')
+    produccion_responde = models.CharField(max_length=20,
+                                           choices=PRODCCION_RESPONDE_CHOICE,
+                                           default='No seleccion')
+    proceso_produccion_define = models.CharField(max_length=20,
+                                                 choices=PROCESOS_PRODUCCION_DEFINE_CHOICE,
+                                                 default='No seleccion')
+    control_calidad = models.CharField(max_length=20,
+                                       choices=CONTROL_CALIDAD_CHOICE,
+                                       default='No seleccion')
+    problemas_abastecimiento = models.CharField(max_length=20,
+                                                choices=ABASTECIMIENTO_CHOICE,
+                                                default='No seleccion')
+    planea_adquisicion = models.CharField(max_length=20,
+                                          choices=ADQUISISION_MAQUINARIA_CHOICE,
+                                          default='No seleccion')
+    planes_contingencia = models.CharField(max_length=20,
+                                           choices=PLANES_CONTINGENCIA_CHOICE,
+                                           default='No seleccion')
+    realiza_inventarios = models.CharField(max_length=20,
+                                           choices=REALIZA_INVENTARIOS_CHOICE,
+                                           default='No seleccion')
+    seguimiento_inventario = models.CharField(max_length=20,
+                                              choices=HACE_SEGUIMIENTO_CHOICE,
+                                              default='No seleccion')
+    eficiencia_distribucion = models.CharField(max_length=20,
+                                               choices=EFICIENCIA_DISTRIBUCION_CHOICE,
+                                               default='No seleccion')
+
+
+class Internacionalizacion(models.Model):
+    paises_exportado_importado = models.TextField()
+    mercados_exportado_importado = models.TextField()
+    metas_relacion = models.TextField()
+    estrategia_marketing = models.TextField()
+    total_ventas_esperadas = models.TextField()
+    margen_comercial = models.TextField()
+    capital_presupuestado = models.TextField()
+
+
+class AspectosAdicionales(models.Model):
+    aspecto = models.CharField(max_length=250)
+
+
+class PuntosPorDiagnostico(models.Model):
+    punto_problematico = models.CharField(max_length=250)
+
+
+class Mercadeo(models.Model):
+    EXISTE_DEPARTAMENTO_CHOICE = (
+        ('si', 'Si'),
+        ('no', 'No'),
+    )
+    MENSAJE_CLARO_CHOICE = (
+        ('si', 'Si'),
+        ('no', 'No'),
+    )
+    DEDICA_MARKETING_CHOICE = (
+        ('si', 'Si'),
+        ('no', 'No'),
+    )
+    DELEGA_CHOICE = (
+        ('si', 'Si'),
+        ('no', 'No'),
+    )
+    PLAN_MERCADEO_CHOICE = (
+        ('si', 'Si'),
+        ('no', 'No'),
+    )
+    IMPLEMENTA_PLAN_CHOICE = (
+        ('si', 'Si'),
+        ('mas o menos', 'Mas o Menos'),
+        ('no', 'No'),
+    )
+    TIENE_CRONOGRAMA_CHOICE = (
+        ('si', 'Si'),
+        ('mas o menos', 'Mas o Menos'),
+        ('no', 'No'),
+    )
+    DEFINE_PERFIL_CHOICE = (
+        ('si', 'Si'),
+        ('mas o menos', 'Mas o Menos'),
+        ('no', 'No'),
+    )
+    CLIENTES_ACTIVOS_POTENCIALES_CHOICE = (
+        ('si', 'Si'),
+        ('no', 'No'),
+    )
+    PAGINA_WEB_CHOICE = (
+        ('si', 'Si'),
+        ('mas o menos', 'Mas o Menos'),
+        ('no', 'No'),
+        ('no tiene web', 'No Tiene Web'),
+    )
+    USAR_TECNOLOGIA_CHOICE = (
+        ('si', 'Si'),
+        ('mas o menos', 'Mas o Menos'),
+        ('no', 'No'),
+    )
+
+    existe_departamento_mercadeo = models.CharField(max_length=20,
+                                                    choices=EXISTE_DEPARTAMENTO_CHOICE,
+                                                    default='No seleccion')
+
+    mensaje_claro = models.CharField(max_length=20,
+                                     choices=MENSAJE_CLARO_CHOICE,
+                                     default='No seleccion')
+    dedica_marketing_difusion = models.CharField(max_length=20,
+                                                 choices=DEDICA_MARKETING_CHOICE,
+                                                 default='No seleccion')
+    delega = models.CharField(max_length=20, choices=DELEGA_CHOICE,
+                              default='No seleccion')
+    plan_mercadeo = models.CharField(max_length=20,
+                                     choices=PLAN_MERCADEO_CHOICE,
+                                     default='No seleccion')
+    implementa_plan = models.CharField(max_length=20,
+                                       choices=IMPLEMENTA_PLAN_CHOICE,
+                                       default='No seleccion')
+    tiene_cronograma = models.CharField(max_length=20,
+                                        choices=TIENE_CRONOGRAMA_CHOICE,
+                                        default='No seleccion')
+    definir_perfil = models.CharField(max_length=20,
+                                      choices=DEFINE_PERFIL_CHOICE,
+                                      default='No seleccion')
+    clientes_activos_potenciales = models.CharField(max_length=20,
+                                                    choices=CLIENTES_ACTIVOS_POTENCIALES_CHOICE,
+                                                    default='No seleccion')
+    paginas_web = models.CharField(max_length=20, choices=PAGINA_WEB_CHOICE,
+                                   default='No seleccion')
+    usar_tecnologias = models.CharField(max_length=20,
+                                        choices=USAR_TECNOLOGIA_CHOICE,
+                                        default='No seleccion')
+
+
 class DiagnosticoEmpresa(models.Model):
     fecha = models.DateField()
     numero_consecutivo = models.CharField(max_length=50)
@@ -419,7 +611,26 @@ class DiagnosticoEmpresa(models.Model):
     id_mercadeo = models.IntegerField(default=0)
     id_financiera = models.OneToOneField(Financiera, null=True, blank=True,
                                          on_delete=models.CASCADE)
-    id_produccion = models.IntegerField(default=0)
-    id_internacionalizacion = models.IntegerField(default=0)
-    id_aspectos = models.IntegerField(default=0)
-    id_resumen = models.IntegerField(default=0)
+    id_produccion = models.OneToOneField(Produccion, null=True, blank=True,
+                                         on_delete=models.CASCADE)
+    id_internacionalizacion = models.OneToOneField(Internacionalizacion,
+                                                   null=True,
+                                                   blank=True,
+                                                   on_delete=models.CASCADE)
+    id_aspectos = models.OneToOneField(AspectosAdicionales, null=True,
+                                       blank=True,
+                                       on_delete=models.CASCADE)
+    id_resumen = models.IntegerField()
+
+
+class AspectosMejorarDiagnosticoEmpresa(models.Model):
+    aspecto_mejorar = models.CharField(max_length=250)
+
+
+class PlanAccion(models.Model):
+    fecha = models.DateField()
+    numero_consecutivo = models.CharField(max_length=50)
+    asesor = models.CharField(max_length=100)
+    id_aspecto_mejora_diagnostico_empresa = models.OneToOneField(
+        AspectosMejorarDiagnosticoEmpresa, null=True, blank=True,
+        on_delete=models.CASCADE)

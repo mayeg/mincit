@@ -3,7 +3,8 @@
 from django import forms
 from django.utils.safestring import mark_safe
 from mincit.models import Informacion, Situacion, Planeacion, DiagnosticoEmpresa, \
-    Organizacion, Direccion, Control, Recurso, Financiera
+    Organizacion, Direccion, Control, Recurso, Financiera, Produccion, \
+    Internacionalizacion, Mercadeo
 
 
 class HorizontalRadioRenderer(forms.RadioSelect.renderer):
@@ -239,6 +240,38 @@ class RecursoForm(forms.ModelForm):
             'empleados_suficientes': forms.RadioSelect(),
         }
 
+class MercadeoForm(forms.ModelForm):
+    class Meta:
+        model = Mercadeo
+
+        fields = [
+
+            'existe_departamento_mercadeo',
+            'mensaje_claro',
+            'dedica_marketing_difusion',
+            'delega',
+            'plan_mercadeo',
+            'implementa_plan',
+            'tiene_cronograma',
+            'definir_perfil',
+            'clientes_activos_potenciales',
+            'paginas_web',
+            'usar_tecnologias',
+        ]
+        widgets = {
+            'existe_departamento_mercadeo': forms.RadioSelect(),
+            'mensaje_claro': forms.RadioSelect(),
+            'dedica_marketing_difusion': forms.RadioSelect(),
+            'delega': forms.RadioSelect(),
+            'plan_mercadeo': forms.RadioSelect(),
+            'implementa_plan': forms.RadioSelect(),
+            'tiene_cronograma': forms.RadioSelect(),
+            'definir_perfil': forms.RadioSelect(),
+            'clientes_activos_potenciales': forms.RadioSelect(),
+            'paginas_web': forms.RadioSelect(),
+            'usar_tecnologias': forms.RadioSelect(),
+        }
+
 
 class FinancieraForm(forms.ModelForm):
     class Meta:
@@ -275,6 +308,93 @@ class FinancieraForm(forms.ModelForm):
             'presupuesto': forms.RadioSelect(),
             'toma_decisiones': forms.RadioSelect(),
         }
+
+class ProduccionForm(forms.ModelForm):
+    class Meta:
+        model = Produccion
+
+        fields = [
+            'porcentaje_capacidad',
+            'normas_tecnicas',
+            'estado_maquinaria',
+            'programa_produccion',
+            'produccion_responde',
+            'proceso_produccion_define',
+            'control_calidad',
+            'problemas_abastecimiento',
+            'planea_adquisicion',
+            'planes_contingencia',
+            'realiza_inventarios',
+            'seguimiento_inventario',
+            'eficiencia_distribucion',
+        ]
+
+        widgets = {
+
+            'porcentaje_capacidad': forms.TextInput(
+                attrs={'class': 'form-control', 'placeholder': 'Porcentaje de'
+                                                               'capacidad'}),
+            'normas_tecnicas': forms.TextInput(
+                attrs={'class': 'form-control', 'placeholder': 'Normas Tecnicas'}),
+            'estado_maquinaria': forms.RadioSelect(),
+            'programa_produccion': forms.RadioSelect(),
+            'produccion_responde': forms.RadioSelect(),
+            'proceso_produccion_define': forms.RadioSelect(),
+            'control_calidad': forms.RadioSelect(),
+            'problemas_abastecimiento': forms.RadioSelect(),
+            'planea_adquisicion': forms.RadioSelect(),
+            'planes_contingencia': forms.RadioSelect(),
+            'realiza_inventarios': forms.RadioSelect(),
+            'seguimiento_inventario': forms.RadioSelect(),
+            'eficiencia_distribucion': forms.RadioSelect(),
+        }
+
+
+class InternacionalizacionForm(forms.ModelForm):
+    class Meta:
+        model = Internacionalizacion
+
+        fields = [
+            'paises_exportado_importado',
+            'mercados_exportado_importado',
+            'metas_relacion',
+            'estrategia_marketing',
+            'total_ventas_esperadas',
+            'margen_comercial',
+            'capital_presupuestado',
+        ]
+
+        widgets = {
+
+        'paises_exportado_importado': forms.Textarea(
+            attrs={'class': 'form-control',
+                   'rows': 3}),
+        'mercados_exportado_importado': forms.Textarea(
+            attrs={'class': 'form-control',
+                   'rows': 3}),
+
+        'metas_relacion': forms.Textarea(
+            attrs={'class': 'form-control',
+                   'rows': 3}),
+
+        'estrategia_marketing': forms.Textarea(
+            attrs={'class': 'form-control',
+                   'rows': 3}),
+
+        'total_ventas_esperadas': forms.Textarea(
+            attrs={'class': 'form-control',
+                   'rows': 3}),
+
+        'margen_comercial': forms.Textarea(
+            attrs={'class': 'form-control',
+                   'rows': 3}),
+
+        'capital_presupuestado': forms.Textarea(
+            attrs={'class': 'form-control',
+                   'rows': 3}),
+
+    }
+
 
 
 

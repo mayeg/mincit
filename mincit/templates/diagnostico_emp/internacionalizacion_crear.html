@@ -1,0 +1,99 @@
+{% extends "plantilla/inicio.html" %}
+{% block title %} DIAGNOSTICO_EMP {% endblock %}
+{% block contenido %}
+<ul class="nav nav-tabs nav-justified">
+    <li>
+        <a href="{% url 'mincit:situacion' id_diagnostico=id_diag %}">Situacion</a>
+    </li>
+    <li><a href="{% url 'mincit:planeacion' id_diagnostico=id_diag %}">Planeacion</a>
+    </li>
+    <li><a href="{% url 'mincit:organizacion' id_diagnostico=id_diag %}">Organizacion</a>
+    </li>
+    <li>
+        <a href="{% url 'mincit:direccion' id_diagnostico=id_diag %}">Direccion</a>
+    </li>
+    <li><a href="{% url 'mincit:control' id_diagnostico=id_diag %}">Control</a>
+    </li>
+    <li>
+        <a href="{% url 'mincit:recursos' id_diagnostico=id_diag %}">Recursos</a>
+    </li>
+    <li>
+        <a href="{% url 'mincit:mercadeo' id_diagnostico=id_diag %}">Mercadeo</a>
+    </li>
+    <li><a href="{% url 'mincit:financiera' id_diagnostico=id_diag %}">Financiera</a>
+    </li>
+    <li><a href="{% url 'mincit:produccion' id_diagnostico=id_diag %}">Produccion</a></li>
+    <li class="active"><a href="#">Internacionalizacion</a></li>
+    <li><a href="#">Aspectos</a></li>
+    <li><a href="#">Resumen</a></li>
+</ul>
+<div class="row">
+    <h1 class="text-center text-success">
+        <p>
+            INTERNACIONALIZACION
+        </p>
+    </h1>
+</div>
+<form class="form-horizontal col-xs-12" action="" method="post">
+    {% csrf_token %}
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">¿A qué países ha exportado o importado?:</label>
+        <div class="col-sm-4">
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            {{form.paises_exportado_importado}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">¿A qué mercados ha exportado e importado sus competidores?</label>
+        <div class="col-sm-4">
+            {{form.mercados_exportado_importado}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">¿Cuáles son las metas en relación a la exportación e importación?:</label>
+        <div class="col-sm-4">
+            {{form.metas_relacion}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">¿Qué estrategia de marketing se requiere para asegurar las ventas de exportación/ importación?:</label>
+        <div class="col-sm-4">
+            {{form.estrategia_marketing}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">¿Cuál es el total de ventas esperadas, domésticas y extranjeras, por los próximos tres años?:</label>
+        <div class="col-sm-4">
+            {{form.total_ventas_esperadas}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">¿Cuál es el margen comercial para las ventas domésticas / internacionales?:</label>
+        <div class="col-sm-4">
+
+            {{form.margen_comercial}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">¿Cuánto capital deberá ser presupuestado para sus proyectos de export/ importación?:</label>
+        <div class="col-sm-4">
+            {{form.capital_presupuestado}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4 col-xs-offset-4">
+            <button type="submit"
+                    class="btn btn-success btn-block btn-flat"> Guardar y
+                Enviar
+            </button>
+        </div><!-- /.col -->
+    </div>
+
+</form>
+{% endblock %}

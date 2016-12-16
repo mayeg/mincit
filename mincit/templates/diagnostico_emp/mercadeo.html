@@ -1,0 +1,121 @@
+{% extends "plantilla/inicio.html" %}
+{% block title %} DIAGNOSTICO_EMP {% endblock %}
+{% block contenido %}
+<ul class="nav nav-tabs nav-justified">
+    <li>
+        <a href="{% url 'mincit:situacion' id_diagnostico=id_diag %}">Situacion</a>
+    </li>
+    <li><a href="{% url 'mincit:planeacion' id_diagnostico=id_diag %}">Planeacion</a>
+    </li>
+    <li><a href="{% url 'mincit:organizacion' id_diagnostico=id_diag %}">Organizacion</a>
+    </li>
+    <li>
+        <a href="{% url 'mincit:direccion' id_diagnostico=id_diag %}">Direccion</a>
+    </li>
+    <li><a href="{% url 'mincit:control' id_diagnostico=id_diag %}">Control</a>
+    </li>
+    <li>
+        <a href="{% url 'mincit:recursos' id_diagnostico=id_diag %}">Recursos</a>
+    </li>
+    <li class="active"><a href="#">Mercadeo</a></li>
+    <li><a href="#">Financiera</a></li>
+    <li><a href="#">Produccion</a></li>
+    <li><a href="#">Internacionalizacion</a></li>
+    <li><a href="#">Aspectos</a></li>
+    <li><a href="#">Resumen</a></li>
+</ul>
+<div class="row">
+    <h1 class="text-center text-success">
+        <p>
+            MERCADEO/COMERCIAL
+        </p>
+    </h1>
+</div>
+<form class="form-horizontal col-xs-12" action="" method="post">
+    {% csrf_token %}
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">Existe un departamento de mercadeo
+            y ventas?:</label>
+        <div class="col-sm-4">
+            {{form.existe_departamento_mercadeo}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">El mensaje de marketing (promesa
+            de valor) es claro, audaz, veraz y despierta interés cuando se
+            transmite:</label>
+        <div class="col-sm-4">
+            {{form.mensaje_claro}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">La gerencia dedica mínimo el 50%
+            del tiempo al marketing y difusión:</label>
+        <div class="col-sm-4">
+            {{form.dedica_marketing_difusion}}
+        </div>
+        <label class="col-sm-2 control-label">o delega:</label>
+        <div class="col-sm-4">
+            {{form.delega}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">La empresa tiene un plan de
+            mercadeo y ventas para los próximos 12 meses:</label>
+        <div class="col-sm-4">
+
+            {{form.plan_mercadeo}}
+        </div>
+        <label class="col-sm-2 control-label">Lo implementa:</label>
+        <div class="col-sm-4">
+            {{form.implementa_plan}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">La empresa tiene un cronograma de
+            marketing y presupuesto destinado para ello:</label>
+        <div class="col-sm-4">
+            {{form.tiene_cronograma}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">Ha definido el perfil y
+            características del cliente ideal y ha desarrollado servicios y
+            material de marketing dirigidos
+            directamente a él:</label>
+        <div class="col-sm-4">
+            {{form.definir_perfil}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">La empresa ha clasificado los
+            clientes activos y potenciales:</label>
+        <div class="col-sm-4">
+            {{form.clientes_activos_potenciales}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">La página web hace parte del ciclo
+            de ventas:</label>
+        <div class="col-sm-4">
+            {{form.paginas_web}}
+        </div>
+    </div>
+    <div class="form-group form-group-s">
+        <label class="col-sm-2 control-label">Usa la mejor tecnología para hacer
+            seguimiento a clientes y ventas (CRM, etc.):</label>
+        <div class="col-sm-4">
+            {{form.usar_tecnologias}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4 col-xs-offset-4">
+            <button type="submit"
+                    class="btn btn-success btn-block btn-flat"> Guardar y
+                Enviar
+            </button>
+        </div><!-- /.col -->
+    </div>
+
+</form>
+{% endblock %}

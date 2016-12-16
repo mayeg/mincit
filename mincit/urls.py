@@ -80,9 +80,15 @@ urlpatterns = [
     url(r'^diagnostico_emp/recursos/editar/(?P<id_recurso>\d+)/$',
         views.RecursoUpdateViews.as_view(),
         name='editar_recursos'),
-
-    #--------FALTA MERCADEO----------
-
+    url(r'^diagnostico_emp/mercadeo/(?P<id_diagnostico>\d+)/$',
+        views.MercadeoViews.as_view(),
+        name='mercadeo'),
+    url(r'^diagnostico_emp/mercadeo/crear/(?P<id_diagnostico>\d+)/$',
+        views.MercadeoCreateViews.as_view(),
+        name='crear_mercadeo'),
+    url(r'^diagnostico_emp/mercadeo/editar/(?P<id_mercadeo>\d+)/$',
+        views.MercadeoUpdateViews.as_view(),
+        name='editar_mercadeo'),
     url(r'^diagnostico_emp/financiera/(?P<id_diagnostico>\d+)/$',
         views.FinancieraViews.as_view(),
         name='financiera'),
@@ -92,5 +98,24 @@ urlpatterns = [
     url(r'^diagnostico_emp/financiera/editar/(?P<id_financiera>\d+)/$',
         views.FinancieraUpdateViews.as_view(),
         name='editar_financiera'),
+    url(r'^diagnostico_emp/produccion/(?P<id_diagnostico>\d+)/$',
+        views.ProduccionViewsViews.as_view(),
+        name='produccion'),
+    url(r'^diagnostico_emp/produccion/crear/(?P<id_diagnostico>\d+)/$',
+        views.ProduccionCreateViews.as_view(),
+        name='crear_produccion'),
+    url(r'^diagnostico_emp/produccion/editar/(?P<id_produccion>\d+)/$',
+        views.ProduccionUpdateViews.as_view(),
+        name='editar_produccion'),
+    url(r'^diagnostico_emp/internacionalizacion/(?P<id_diagnostico>\d+)/$',
+        views.InternacionalizacionViews.as_view(),
+        name='internacionalizacion'),
+    url(r'^diagnostico_emp/internacionalizacion/crear/(?P<id_diagnostico>\d+)/$',
+        views.InternacionalizacionCreateViews.as_view(),
+        name='crear_internacionalizacion'),
+    url(r'^diagnostico_emp/internacionalizacion/editar/(?P<id_internacionalizacion>\d+)/$',
+        views.InternacionalizacionUpdateViews.as_view(),
+        name='editar_internacionalizacion'),
+
 
 ]
