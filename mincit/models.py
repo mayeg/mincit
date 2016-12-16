@@ -608,7 +608,8 @@ class DiagnosticoEmpresa(models.Model):
                                       on_delete=models.CASCADE)
     id_recursos = models.OneToOneField(Recurso, null=True, blank=True,
                                        on_delete=models.CASCADE)
-    id_mercadeo = models.IntegerField(default=0)
+    id_mercadeo = models.OneToOneField(Mercadeo, null=True, blank=True,
+                                         on_delete=models.CASCADE)
     id_financiera = models.OneToOneField(Financiera, null=True, blank=True,
                                          on_delete=models.CASCADE)
     id_produccion = models.OneToOneField(Produccion, null=True, blank=True,
@@ -620,7 +621,7 @@ class DiagnosticoEmpresa(models.Model):
     id_aspectos = models.OneToOneField(AspectosAdicionales, null=True,
                                        blank=True,
                                        on_delete=models.CASCADE)
-    id_resumen = models.IntegerField()
+    id_resumen = models.IntegerField(blank=True, null=True, default=0)
 
 
 class AspectosMejorarDiagnosticoEmpresa(models.Model):

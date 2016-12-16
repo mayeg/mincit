@@ -105,7 +105,7 @@ class DiagnosticoEmpresaCreateViews(LoginRequiredMixin, CreateView):
             **kwargs)
         empresa = Empresa.objects.get(id=self.args[0])
         fecha = datetime.today()
-        asesor = User.first_name
+        asesor = self.request.user.username
         numero = self.get_numero_diagnostico(empresa)
         diagnotico = DiagnosticoEmpresa.objects.create(id_empresa=empresa,
                                                        asesor=asesor,
@@ -118,6 +118,8 @@ class DiagnosticoEmpresaCreateViews(LoginRequiredMixin, CreateView):
     def get_numero_diagnostico(self, empresa):
         diagnosticos = DiagnosticoEmpresa.objects.filter(
             id_empresa=empresa).order_by('-id')
+        if not diagnosticos:
+            return 1
         if diagnosticos is not None:
             diagnostico = diagnosticos[0]
             numero = diagnostico.id
@@ -597,7 +599,7 @@ class RecursoViews(LoginRequiredMixin, View):
 
         if self.diagnostico.id_recursos is not None:
             return redirect('mincit:editar_recursos',
-                            self.diagnostico.id_recurso.id)
+                            self.diagnostico.id_recursos.id)
         return redirect('mincit:crear_recursos', self.diagnostico.id)
 
 
@@ -656,7 +658,7 @@ class RecursoUpdateViews(LoginRequiredMixin, UpdateView):
         try:
             recurso = Recurso.objects.get(
                 id=self.kwargs['id_recurso'])
-            diagnostico = DiagnosticoEmpresa.objects.get(id_recrusos=recurso)
+            diagnostico = DiagnosticoEmpresa.objects.get(id_recursos=recurso)
             url_reverse = "mincit:mercadeo"
         except DiagnosticoEmpresa.DoesNotExist:
             url_reverse = 'mincit:recursos'

@@ -96,7 +96,8 @@ class SituacionForm(forms.ModelForm):
         ]
 
         widgets = {
-            'sector': forms.RadioSelect(renderer=HorizontalRadioRenderer),
+            'sector': forms.RadioSelect(renderer=HorizontalRadioRenderer,
+                                        attrs={'style': 'margin-left: 20px;'}),
             'planes_largo_p': forms.RadioSelect(renderer=HorizontalRadioRenderer),
             'mision': forms.RadioSelect(renderer=HorizontalRadioRenderer),
             'vision': forms.RadioSelect(renderer=HorizontalRadioRenderer),
