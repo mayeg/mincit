@@ -118,10 +118,11 @@ class DiagnosticoEmpresaCreateViews(LoginRequiredMixin, CreateView):
     def get_numero_diagnostico(self, empresa):
         diagnosticos = DiagnosticoEmpresa.objects.filter(
             id_empresa=empresa).order_by('-id')
-        diagnostico = diagnosticos[0]
-        numero = diagnostico.id
-        if numero != None:
-            return numero + 1
+        if diagnosticos is not None:
+            diagnostico = diagnosticos[0]
+            numero = diagnostico.id
+            if numero != None:
+                return numero + 1
         return 1
 
 
