@@ -99,7 +99,7 @@ urlpatterns = [
         views.FinancieraUpdateViews.as_view(),
         name='editar_financiera'),
     url(r'^diagnostico_emp/produccion/(?P<id_diagnostico>\d+)/$',
-        views.ProduccionViewsViews.as_view(),
+        views.ProduccionViews.as_view(),
         name='produccion'),
     url(r'^diagnostico_emp/produccion/crear/(?P<id_diagnostico>\d+)/$',
         views.ProduccionCreateViews.as_view(),

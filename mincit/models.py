@@ -634,3 +634,27 @@ class PlanAccion(models.Model):
     id_aspecto_mejora_diagnostico_empresa = models.OneToOneField(
         AspectosMejorarDiagnosticoEmpresa, null=True, blank=True,
         on_delete=models.CASCADE)
+
+class InformacionSolicitante(models.Model):
+    pass
+
+class DeficinonNegocio(models.Model):
+    pass
+
+class RecursoHumano(models.Model):
+    pass
+
+class AnalisisMercado(models.Model):
+    pass
+
+class EstrategiaVentas(models.Model):
+    pass
+
+class AnalisisEconomicoFinanciero(models.Model):
+    pass
+
+class AnlaisisTecnico(models.Model):
+    pass
+
+class AnalisisLegal(models.Model):
+    pass
